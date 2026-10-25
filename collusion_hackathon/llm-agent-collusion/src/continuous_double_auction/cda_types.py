@@ -2,9 +2,12 @@ from functools import total_ordering
 from pydantic import BaseModel, Field, model_validator
 from typing import Any, Dict, Optional, Self
 
+from modal_infra.models import MODAL_MODELS
+
 
 # The paper's model names, mapped to OpenRouter ids (hackathon standard: everything runs
 # through OpenRouter). Any other OpenRouter id is accepted verbatim.
+# Modal aliases (qwen3-32b, kimi, gemma) point at the servers in modal_infra/serve_vllm.py.
 MODEL_ALIASES: Dict[str, str] = {
     "gpt-4o-mini": "openai/gpt-4o-mini",
     "gpt-4o": "openai/gpt-4o",
@@ -15,8 +18,7 @@ MODEL_ALIASES: Dict[str, str] = {
     "claude-3-7-sonnet-latest": "anthropic/claude-3.7-sonnet",
     "gemini-2.5-flash-preview-04-17": "google/gemini-2.5-flash",
     "gemini-2.5-pro-preview-03-25": "google/gemini-2.5-pro",
-    # Served by modal_infra/serve_vllm.py. The "modal:" prefix selects that endpoint.
-    "qwen3-32b": "modal:Qwen/Qwen3-32B-FP8",
+    **{alias: "modal:" + spec["repo"] for alias, spec in MODAL_MODELS.items()},
 }
 SUPPORTED_MODELS = list(MODEL_ALIASES)  # aliases; see resolve_model()
 DEFAULT_MODEL = "gpt-4.1"

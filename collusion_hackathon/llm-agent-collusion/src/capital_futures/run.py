@@ -55,7 +55,10 @@ RESULT_TYPES = dict(sim="rule-based simulation (no LLM)", mock="mocked LLM pipel
 
 # Per-million-token USD prices used only for estimates. They are assumptions; check current pricing.
 PRICE_ASSUMPTIONS = {"gpt-4.1": (2.0, 8.0), "gpt-4.1-mini": (0.4, 1.6), "gpt-4o": (2.5, 10.0),
-                     "claude-3.7-sonnet": (3.0, 15.0), "claude-sonnet-4": (3.0, 15.0), "default": (3.0, 15.0)}
+                     "claude-3.7-sonnet": (3.0, 15.0), "claude-sonnet-4": (3.0, 15.0),
+                     # Self-hosted Modal GPUs. Rough placeholders, not a spending cap.
+                     "qwen3-32b": (0.5, 1.5), "kimi": (0.5, 1.5), "gemma": (0.5, 1.5),
+                     "default": (3.0, 15.0)}
 
 
 # ---------------------------------------------------------------------------- provenance
@@ -374,9 +377,7 @@ def estimate(configs: list[ExperimentConfig], retry_rate: float = 0.05, output_t
         calls = len(cfg.slots) * cfg.rounds * (1 + retry_rate)
         reg_calls = 0.0
         if cfg.regulator_enabled:
-            channels = (int(cfg.seller_comms_enabled) + int(cfg.buyer_comms_enabled)
-                        + int(cfg.public_chat_enabled) + int(cfg.private_chat_enabled))
-            reg_calls = channels * cfg.rounds * (1 + retry_rate)
+            reg_calls = cfg.rounds + 1  # one review each hour, plus the end-of-game audit
         cost = 0.0
         for slot in cfg.slots:
             pin, pout = PRICE_ASSUMPTIONS.get(cfg.model_for(slot), PRICE_ASSUMPTIONS["default"])
@@ -392,9 +393,7 @@ def estimate(configs: list[ExperimentConfig], retry_rate: float = 0.05, output_t
     def _budget(cfg: ExperimentConfig) -> int:
         calls = len(cfg.slots) * cfg.rounds * (1 + cfg.max_parse_retries)
         if cfg.regulator_enabled:
-            channels = (int(cfg.seller_comms_enabled) + int(cfg.buyer_comms_enabled)
-                        + int(cfg.public_chat_enabled) + int(cfg.private_chat_enabled))
-            calls += channels * cfg.rounds * (1 + cfg.max_parse_retries)
+            calls += cfg.rounds * 2 + 1  # hourly review, possible private follow-up, final audit
         return calls
 
     return dict(runs=len(configs), calls=round(total_calls),
@@ -524,7 +523,8 @@ def main(argv=None):
         sp.add_argument("--buyer-comms", choices=["on", "off"], help="buyer communication")
         sp.add_argument("--private-chat", choices=["on", "off"], help="one agent may write privately to one other")
         sp.add_argument("--public-chat", choices=["on", "off"], help="every agent may read and write one shared chat")
-        sp.add_argument("--regulator", choices=["on", "off"], help="regulator that can restrict a message channel")
+        sp.add_argument("--regulator", choices=["on", "off"],
+                        help="regulator that reviews public chat, profit and loss, and trades each hour")
         sp.add_argument("--backend", choices=["api", "modal"], help="live inference: hosted API or the Modal vLLM endpoint")
         sp.add_argument("--settlement", choices=["spot_vwap", "external"])
         sp.add_argument("--multiplier", type=int, help="lots per futures contract (default 1000)")
@@ -581,9 +581,13 @@ def main(argv=None):
         live = [c for c in configs if c.mode == "live"]
         modal_live = any(c.inference_backend == "modal" for c in live)
         api_live = any(c.inference_backend != "modal" for c in live)
-        if modal_live and not (os.getenv("MODAL_LLM_BASE_URL", "").strip() and os.getenv("MODAL_LLM_API_KEY", "").strip()):
-            sys.exit("Modal endpoint is not configured. Set MODAL_LLM_BASE_URL and MODAL_LLM_API_KEY "
-                     "(see modal_infra/serve_vllm.py). No calls were made.")
+        if modal_live:
+            from modal_infra.models import missing_modal_env
+            names = [m for c in live if c.inference_backend == "modal" for m in (*c.seller_models, *c.buyer_models)]
+            missing = missing_modal_env(names)
+            if missing:
+                sys.exit("Modal endpoint is not configured for this model. Set " + ", ".join(missing)
+                         + " (see modal_infra/serve_vllm.py). No calls were made.")
         if api_live and not os.getenv("OPENROUTER_API_KEY") and os.getenv("LLM_PROVIDER", "openrouter") == "openrouter":
             sys.exit("OPENROUTER_API_KEY is not set (put it in compute.env or the environment). No calls were made.")
         if not args.yes:

@@ -22,9 +22,10 @@ uv run python -m src.capital_futures.dashboard.server --port 8765
 
 Open http://127.0.0.1:8765. Select Rules, Mock, or Live; choose capital, futures,
 seller messages, buyer messages, the regulator, settlement, margin, participants, and horizon.
-Live inference is either the hosted API (Nebius or OpenRouter) or the Modal vLLM endpoint
-(`modal_infra/serve_vllm.py`, model ids prefixed `modal:`). The Modal route needs
-`MODAL_LLM_BASE_URL` and `MODAL_LLM_API_KEY` in the repo-root `compute.env`. **Run** executes the selected
+Live inference is either the hosted API (Nebius or OpenRouter) or a Modal vLLM server
+(`modal_infra/serve_vllm.py`). The live model control offers Qwen3 32B, Kimi VL A3B, and Gemma 3 27B;
+each alias is a separate endpoint (`MODAL_LLM_BASE_URL`, `MODAL_KIMI_BASE_URL`, `MODAL_GEMMA_BASE_URL`)
+plus the shared `MODAL_LLM_API_KEY` in the repo-root `compute.env`. **Run** executes the selected
 condition or 8/12-cell design. **Run equal vs unequal (paired)** runs the two capital scenarios
 under identical other settings. Progress is polled while the job runs; on completion the
 selectors, plots, tables, and ledgers update automatically. The server binds only to loopback.

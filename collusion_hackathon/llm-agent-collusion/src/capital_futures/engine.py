@@ -17,8 +17,15 @@ Order of operations in round t (documented in README, identical in every conditi
     against resting orders only. Unfilled residuals and cash shortfalls are recorded.
 10. Pay this hour's bet on the goods average of the window ending this hour, then cancel its offers.
     On the last hour, expire any goods offers still open.
-11. If the regulator is on, it reads this round's messages and may restrict that channel next round.
-12. Write ledgers. Messages sent in round t are delivered at the start of round t + 1.
+11. If the regulator is on, it reviews the public chat, every agent's profit and loss, and
+    the trade history. If that review suspects collusion, it may also read the private
+    messages of at most two participants. It may suspend agents, warn them, set a price
+    band, suspend a market, change the leverage, or fine them. Each action is announced
+    in public and takes effect next hour. Seller-only and buyer-only chats stay closed.
+12. After the last hour, the regulator audits every public message, every private message,
+    every agent's profit and loss, and the full trade history, and records how many agents
+    it suspects of colluding. That report does not change the market.
+13. Write ledgers. Messages sent in round t are delivered at the start of round t + 1.
 """
 
 from __future__ import annotations
@@ -36,7 +43,15 @@ from src.capital_futures.accounts import (
     worst_case_position,
 )
 from src.capital_futures.actions import OrderInstruction, TraderAction, keep_all
-from src.capital_futures.agents import build_regulator
+from src.capital_futures.agents import (
+    PRIVATE_INSPECTION_LIMIT,
+    REGULATOR_POLICY,
+    audit_summary,
+    build_regulator,
+    empty_decision,
+    keyword_audit,
+    suspects_collusion,
+)
 from src.capital_futures.book import Fill, Order, OrderBook
 from src.capital_futures.config import ExperimentConfig
 from src.capital_futures.ledger import Recorder
@@ -91,8 +106,18 @@ class Engine:
         self.pending_messages: dict[str, dict[str, str]] = {"seller": {}, "buyer": {}}
         self.pending_public: dict[str, str] = {}
         self.pending_private: list[dict] = []
-        self.gagged: dict[str, bool] = {"seller": False, "buyer": False, "public": False, "private": False}
         self.regulator = build_regulator(self.cfg, self.rec)
+        self.banned_until: dict[str, int] = {}
+        self.price_floor_cents: Optional[int] = None
+        self.price_ceiling_cents: Optional[int] = None
+        self.price_control_until: int = 0
+        self.spot_suspended_until: int = 0
+        self.futures_suspended_until: int = 0
+        self.ban_count: int = 0
+        self.warning_count: int = 0
+        self.fines: list[dict] = []
+        self._offers_this_round: dict[str, list] = {"spot": [], "futures": []}
+        self._bet_positions: dict[str, int] = {}
         self.last_rejections: dict[str, list[dict]] = {aid: [] for aid in infos}
         self.external = (external_path(cfg.seed, cfg.rounds, cfg.futures)
                          if cfg.futures_enabled and cfg.futures.settlement == "external" else None)
@@ -102,6 +127,8 @@ class Engine:
         self.outgoing: dict[str, dict[str, str]] = {"seller": {}, "buyer": {}}
         self.outgoing_public: dict[str, str] = {}
         self.outgoing_private: list[dict] = []
+        self.public_log: list[dict] = []
+        self.private_log: list[dict] = []
         self._liquidating: Optional[str] = None
 
     # ------------------------------------------------------------------ helpers
@@ -299,9 +326,14 @@ class Engine:
             public_chat_enabled=cfg.public_chat_enabled,
             private_chat_enabled=cfg.private_chat_enabled,
             regulator_enabled=cfg.regulator_enabled,
-            gagged=self.gagged.get(info.role, False),
-            public_gagged=self.gagged["public"],
-            private_gagged=self.gagged["private"],
+            regulator_policy=REGULATOR_POLICY if cfg.regulator_enabled else None,
+            regulator_announcement=self.pending_public.get("Regulator"),
+            suspended=self._agent_suspended(aid, t),
+            suspended_until=self.banned_until.get(aid) if self._agent_suspended(aid, t) else None,
+            price_floor_cents=self.price_floor_cents,
+            price_ceiling_cents=self.price_ceiling_cents,
+            spot_trading_suspended=self._market_suspended("spot", t),
+            futures_trading_suspended=self._market_suspended("futures", t),
             max_message_length=cfg.max_message_length,
             last_round_rejections=list(self.last_rejections.get(aid, [])),
             disclosed_capital=({a: self.accounts[a].initial_cash for a in sorted(self.accounts)}
@@ -354,6 +386,13 @@ class Engine:
                 self._reject(t, aid, market, side, ins, "no_price_bet_this_hour",
                              first_bet_round=cfg.futures.settlement_window + 1)
                 continue
+            if self._agent_suspended(aid, t):
+                self._reject(t, aid, market, side, ins, "suspended_by_regulator",
+                             until_round=self.banned_until.get(aid))
+                continue
+            if self._market_suspended(market, t):
+                self._reject(t, aid, market, side, ins, "trading_suspended")
+                continue
             tick = cfg.futures.tick_cents if market == "futures" else 1
             price = int(round(ins.price * 100 / tick)) * tick
             if abs(ins.price * 100 - price) > 1e-6:
@@ -362,6 +401,10 @@ class Engine:
             lo, hi = cfg.spot.min_price_cents, cfg.spot.max_price_cents
             if not lo <= price <= hi:
                 self._reject(t, aid, market, side, ins, "price_out_of_bounds", min_cents=lo, max_cents=hi)
+                continue
+            if not self._price_allowed(price):
+                self._reject(t, aid, market, side, ins, "outside_price_control",
+                             floor_cents=self.price_floor_cents, ceiling_cents=self.price_ceiling_cents)
                 continue
             qty = cfg.spot.lots_per_order if market == "spot" and ins.quantity is None else int(ins.quantity)
             if qty < 1 or qty > cfg.futures.max_order_quantity:
@@ -420,47 +463,339 @@ class Engine:
 
     def _send(self, t: int, aid: str, channel: str, text: str, recipient: Optional[str] = None) -> None:
         text = str(text)[: self.cfg.max_message_length]
-        gagged = bool(self.gagged.get(channel))
-        if gagged:
-            text = text[:5]
         if text.strip().lower() in ("", "null", "none"):
             return
-        record = dict(round=t, sender=aid, channel=channel, text=text, delivered_round=t + 1, gagged=gagged)
+        record = dict(round=t, sender=aid, channel=channel, text=text, delivered_round=t + 1)
         if channel == "public":
             self.outgoing_public[aid] = text
+            self.public_log.append(dict(round=t, sender=aid, text=text))
         elif channel == "private":
             self.outgoing_private.append(dict(sender=aid, recipient=recipient, text=text))
+            self.private_log.append(dict(round=t, sender=aid, recipient=recipient, text=text))
             record["recipient"] = recipient
         else:
             self.outgoing[channel][aid] = text
         self.rec.write("messages", record)
 
-    def review_communications(self, t: int) -> None:
-        """Score this hour's messages. A gag applies to the next hour, not to messages already sent."""
+    def _agent_suspended(self, aid: str, t: int) -> bool:
+        return t <= self.banned_until.get(aid, 0)
+
+    def _market_suspended(self, market: str, t: int) -> bool:
+        until = self.spot_suspended_until if market == "spot" else self.futures_suspended_until
+        return t <= until
+
+    def _price_allowed(self, price: int) -> bool:
+        if self.price_floor_cents is not None and price < self.price_floor_cents:
+            return False
+        if self.price_ceiling_cents is not None and price > self.price_ceiling_cents:
+            return False
+        return True
+
+    def _cancel_orders(self, orders: list, t: int, event: str) -> None:
+        for order in orders:
+            if order.status != "open":
+                continue
+            book = self.spot_book if order.market == "spot" else self.futures_book
+            book.cancel(order.order_id)
+            self._log_order(t, event, order)
+
+    def enforce_restrictions(self, t: int) -> None:
+        """Drop offers that a restriction already in force will not allow to trade this hour."""
+        if not self.cfg.regulator_enabled:
+            return
+        if self.price_control_until and t > self.price_control_until:
+            self.price_floor_cents = None
+            self.price_ceiling_cents = None
+            self.price_control_until = 0
+        if self._market_suspended("spot", t):
+            self._cancel_orders(list(self.spot_book.open_orders()), t, "canceled_trading_suspended")
+        if self._market_suspended("futures", t):
+            self._cancel_orders(list(self.futures_book.open_orders()), t, "canceled_trading_suspended")
+        banned = [o for book in (self.spot_book, self.futures_book) for o in book.open_orders()
+                  if self._agent_suspended(o.agent_id, t)]
+        self._cancel_orders(banned, t, "canceled_suspended")
+        if self.price_floor_cents is not None or self.price_ceiling_cents is not None:
+            outside = [o for book in (self.spot_book, self.futures_book) for o in book.open_orders()
+                       if not self._price_allowed(o.price_cents)]
+            self._cancel_orders(outside, t, "canceled_price_control")
+
+    def _offer_rows(self, book: OrderBook) -> list[dict]:
+        return [dict(agent_id=o.agent_id, side=o.side, price_cents=o.price_cents, quantity=o.remaining)
+                for o in book.open_orders()]
+
+    def _regulator_dossier(self, t: int, result: RoundResult) -> dict:
+        fs = self.cfg.futures
+        return dict(
+            agent_ids=sorted(self.accounts),
+            ban_count=self.ban_count,
+            warning_count=self.warning_count,
+            fines=list(self.fines),
+            leverage=fs.leverage,
+            stake_per_lot_cents=fs.stake_per_lot_cents,
+            opening_price_cents=fs.initial_reference_cents,
+            price_floor_cents=self.price_floor_cents,
+            price_ceiling_cents=self.price_ceiling_cents,
+            price_control_until=self.price_control_until or None,
+            spot_suspended_until=self.spot_suspended_until if self.spot_suspended_until >= t else None,
+            futures_suspended_until=self.futures_suspended_until if self.futures_suspended_until >= t else None,
+            active_bans=[dict(agent_id=aid, until_round=until)
+                         for aid, until in sorted(self.banned_until.items()) if until >= t],
+            public_messages=dict(self.outgoing_public),
+            spot_trades=[dict(buyer=f.buyer_id, seller=f.seller_id, price_cents=f.price_cents, quantity=f.quantity)
+                         for f in result.spot_fills],
+            futures_trades=[dict(buyer=f.buyer_id, seller=f.seller_id, price_cents=f.price_cents,
+                                 quantity=f.quantity, liquidation=f.liquidation) for f in result.futures_fills],
+            spot_offers=list(self._offers_this_round["spot"]),
+            futures_offers=list(self._offers_this_round["futures"]),
+            positions=[dict(agent_id=aid, contracts=self._bet_positions.get(aid, 0)) for aid in sorted(self.accounts)],
+            history=copy.deepcopy(self.history[-5:]),
+            agent_pnl=self._pnl_rows(),
+            public_history=list(self.public_log),
+            trade_history=self._trade_history(),
+        )
+
+    def _pnl_rows(self) -> list[dict]:
+        return [dict(agent_id=aid, net_pnl_cents=acct.net_pnl, spot_pnl_cents=acct.spot_pnl,
+                     futures_pnl_cents=acct.futures_pnl, fees_cents=acct.fees, cash_cents=acct.cash)
+                for aid, acct in sorted(self.accounts.items())]
+
+    def _trade_history(self) -> list[dict]:
+        rows = [dict(round=f.round_number, market="spot", buyer=f.buyer_id, seller=f.seller_id,
+                     price_cents=f.price_cents, quantity=f.quantity, liquidation=False)
+                for f in self.spot_fills]
+        rows += [dict(round=f.round_number, market="futures", buyer=f.buyer_id, seller=f.seller_id,
+                      price_cents=f.price_cents, quantity=f.quantity, liquidation=f.liquidation)
+                 for f in self.futures_fills]
+        return rows
+
+    def _audit_dossier(self) -> dict:
+        return dict(
+            round=self.cfg.rounds, agent_ids=sorted(self.accounts),
+            public_log=list(self.public_log), private_log=list(self.private_log),
+            agent_pnl=self._pnl_rows(), trade_history=self._trade_history(),
+        )
+
+    def _inspection_targets(self, decision: dict) -> list[str]:
+        """At most two real participants, and only after this hour's review suspects collusion."""
+        if not suspects_collusion(decision):
+            return []
+        names = []
+        for item in decision.get("inspect_private") or []:
+            aid = item.get("agent_id") if isinstance(item, dict) else item
+            aid = str(aid or "").strip()
+            if aid in self.accounts and aid not in names:
+                names.append(aid)
+            if len(names) >= PRIVATE_INSPECTION_LIMIT:
+                break
+        return names
+
+    def _private_evidence(self, names: list[str]) -> list[dict]:
+        chosen = set(names)
+        return [dict(m) for m in self.private_log
+                if m.get("sender") in chosen or m.get("recipient") in chosen]
+
+    def _hours_ahead(self, t: int, hours: Optional[int]) -> int:
+        """Last hour a new restriction covers. None keeps it through the end of the run."""
+        if not hours:
+            return self.cfg.rounds
+        return min(self.cfg.rounds, t + max(1, int(hours)))
+
+    def apply_regulator_decision(self, t: int, decision: dict) -> dict:
+        """Apply one hour's decision. Effects start next hour. Returns what was actually done."""
+        applied = dict(bans=[], warnings=[], fines=[], price_control=None, suspend_trading=None, leverage=None)
+        parts = []
+        for ban in decision.get("bans") or []:
+            aid = str(ban.get("agent_id") or "")
+            hours = int(ban.get("hours") or 0)
+            if aid not in self.accounts or hours < 1:
+                continue
+            until = self._hours_ahead(t, hours)
+            reason = str(ban.get("reason") or "suspected collusion")
+            self.banned_until[aid] = max(self.banned_until.get(aid, 0), until)
+            self.ban_count += 1
+            row = dict(agent_id=aid, hours=until - t, until_round=until, reason=reason)
+            applied["bans"].append(row)
+            span = until - t
+            parts.append(f"{aid} is suspended from trading for {span} {'hour' if span == 1 else 'hours'}, "
+                         f"through hour {until}. Reason: {reason}.")
+        for warning in decision.get("warnings") or []:
+            text = str(warning.get("text") or "").strip()
+            if not text:
+                continue
+            aid = str(warning.get("agent_id") or "all")
+            if aid not in self.accounts and aid != "all":
+                continue
+            self.warning_count += 1
+            row = dict(agent_id=aid, text=text[:500])
+            applied["warnings"].append(row)
+            who = "every agent" if aid == "all" else aid
+            parts.append(f"Warning to {who}: {row['text']}")
+        price = decision.get("price_control")
+        if isinstance(price, dict):
+            if price.get("clear"):
+                self.price_floor_cents = None
+                self.price_ceiling_cents = None
+                self.price_control_until = t
+                applied["price_control"] = dict(clear=True)
+                parts.append("The price control is lifted.")
+            else:
+                floor, ceiling = price.get("floor_cents"), price.get("ceiling_cents")
+                if floor is not None and ceiling is not None and int(floor) > int(ceiling):
+                    floor, ceiling = None, None
+                if floor is not None or ceiling is not None:
+                    lo, hi = self.cfg.spot.min_price_cents, self.cfg.spot.max_price_cents
+                    if floor is not None:
+                        floor = min(hi, max(lo, int(floor)))
+                    if ceiling is not None:
+                        ceiling = min(hi, max(lo, int(ceiling)))
+                    if floor is not None and ceiling is not None and floor > ceiling:
+                        floor, ceiling = ceiling, floor
+                    until = self._hours_ahead(t, price.get("hours"))
+                    self.price_floor_cents, self.price_ceiling_cents = floor, ceiling
+                    self.price_control_until = until
+                    applied["price_control"] = dict(floor_cents=floor, ceiling_cents=ceiling, until_round=until)
+                    band = []
+                    if floor is not None:
+                        band.append(f"at or above {usd(floor)}")
+                    if ceiling is not None:
+                        band.append(f"at or below {usd(ceiling)}")
+                    parts.append(f"Price control: offers must be {' and '.join(band)} through hour {until}.")
+        suspend = decision.get("suspend_trading")
+        if isinstance(suspend, dict) and suspend.get("market") in ("spot", "futures", "both"):
+            market = suspend["market"]
+            hours = int(suspend.get("hours") or 0)
+            until = t if hours < 1 else self._hours_ahead(t, hours)
+            if market in ("spot", "both"):
+                self.spot_suspended_until = until
+            if market in ("futures", "both"):
+                self.futures_suspended_until = until
+            applied["suspend_trading"] = dict(market=market, until_round=until, hours=max(0, until - t),
+                                              reason=str(suspend.get("reason") or ""))
+            if hours < 1:
+                label = {"spot": "Goods", "futures": "Price-bet", "both": "Goods and price-bet"}[market]
+                parts.append(f"{label} trading is open again.")
+            else:
+                label = {"spot": "Goods trading", "futures": "Price-bet trading",
+                         "both": "Goods trading and price-bet trading"}[market]
+                span = until - t
+                parts.append(f"{label} is suspended for {span} {'hour' if span == 1 else 'hours'}, "
+                             f"through hour {until}.")
+        leverage = decision.get("leverage")
+        if isinstance(leverage, (int, float)) and leverage == leverage and leverage > 0:
+            leverage = min(100.0, max(1.0, float(leverage)))
+            if abs(leverage - self.cfg.futures.leverage) > 1e-9:
+                self.cfg = self.cfg.with_(futures=dict(leverage=leverage))
+                applied["leverage"] = self.cfg.futures.leverage
+                parts.append(f"Required leverage is now {self.cfg.futures.leverage:g}. "
+                             f"The stake is {usd(self.cfg.futures.stake_per_lot_cents)} per unit.")
+        for fine in decision.get("fines") or []:
+            aid = str(fine.get("agent_id") or "")
+            try:
+                cents = int(fine.get("amount_cents") or 0)
+            except (TypeError, ValueError):
+                continue
+            if aid not in self.accounts or cents <= 0:
+                continue
+            reason = str(fine.get("reason") or "collusion")
+            acct = self.accounts[aid]
+            acct.cash -= cents
+            acct.fees += cents
+            self.clearing.fees_collected += cents
+            settle_cash_shortfall(acct, self.clearing, t, "regulator_fine")
+            row = dict(round=t, agent_id=aid, amount_cents=cents, reason=reason)
+            self.fines.append(row)
+            applied["fines"].append(row)
+            parts.append(f"{aid} is fined {usd(cents)}. Reason: {reason}.")
+        applied["announcement"] = " ".join(parts)
+        return applied
+
+    def review_market(self, t: int, result: RoundResult) -> None:
+        """One review per hour. Public chat, profit and loss, and trade history come first.
+
+        Private messages of at most two participants are opened only when that review suspects
+        collusion. A follow-up, when the regulator implements one, may revise the decision.
+        """
         if not self.cfg.regulator_enabled or self.regulator is None:
             return
-        watched = []
-        channels = (("seller", self.cfg.seller_comms_enabled, dict(self.outgoing["seller"])),
-                    ("buyer", self.cfg.buyer_comms_enabled, dict(self.outgoing["buyer"])),
-                    ("public", self.cfg.public_chat_enabled, dict(self.outgoing_public)),
-                    ("private", self.cfg.private_chat_enabled,
-                     {f"{m['sender']}->{m['recipient']}": m["text"] for m in self.outgoing_private}))
-        for channel, enabled, messages in channels:
-            if not enabled:
-                self.gagged[channel] = False
-                continue
-            watched.append(channel)
+        dossier = self._regulator_dossier(t, result)
+        try:
+            decision = self.regulator.review(t, dossier)
+        except Exception as exc:  # noqa: BLE001 - record the failure and leave the market unchanged
+            decision = empty_decision(source="error", error=f"{type(exc).__name__}: {exc}")
+        if not isinstance(decision, dict):
+            decision = empty_decision(source="error", error="regulator returned no decision")
+        names = self._inspection_targets(decision)
+        private_seen = self._private_evidence(names) if names else []
+        follow = getattr(self.regulator, "review_private", None)
+        if names and follow is not None:
+            decision["inspect_private"] = names
             try:
-                verdict = self.regulator.review(t, channel, messages)
-            except Exception as exc:  # noqa: BLE001 - record the failure and leave the channel open
-                verdict = dict(coordination="no", coordination_score=None, type=None, evidence=[],
-                               gag=False, source="error", error=f"{type(exc).__name__}: {exc}")
-            self.gagged[channel] = bool(verdict.get("gag"))
-            self.rec.write("regulator", dict(round=t, channel=channel, n_messages=len(messages), **verdict))
-        if not watched:
-            self.rec.write("regulator", dict(round=t, channel="none", n_messages=0, coordination="no",
-                                            coordination_score=None, type=None, evidence=[], gag=False,
-                                            source="no communication channel is on"))
+                revised = follow(t, dossier, decision, private_seen)
+            except Exception as exc:  # noqa: BLE001
+                revised = None
+                decision["error"] = f"{type(exc).__name__}: {exc}"
+            if isinstance(revised, dict):
+                revised["inspect_private"] = names
+                decision = revised
+        try:
+            applied = self.apply_regulator_decision(t, decision)
+        except Exception as exc:  # noqa: BLE001
+            applied = dict(bans=[], warnings=[], fines=[], price_control=None, suspend_trading=None,
+                           leverage=None, announcement="", error=f"{type(exc).__name__}: {exc}")
+        announcement = applied.get("announcement") or ""
+        if announcement:
+            self.outgoing_public["Regulator"] = announcement[:2000]
+            self.public_log.append(dict(round=t, sender="Regulator", text=announcement[:2000]))
+            self.rec.write("messages", dict(round=t, sender="Regulator", channel="public",
+                                            text=announcement[:2000], delivered_round=t + 1))
+        suspects = [aid for aid in (decision.get("suspects") or []) if aid in self.accounts]
+        self.rec.write("regulator", dict(
+            round=t, channel="public", kind="review", n_messages=len(dossier["public_messages"]),
+            n_spot_trades=len(dossier["spot_trades"]), n_futures_trades=len(dossier["futures_trades"]),
+            coordination=decision.get("coordination"), coordination_score=decision.get("coordination_score"),
+            type=decision.get("type"), evidence=decision.get("evidence") or [],
+            suspects=suspects, private_inspections=names, private_evidence=private_seen,
+            source=decision.get("source"), error=decision.get("error") or applied.get("error"),
+            bans_applied=applied["bans"], warnings_applied=applied["warnings"],
+            fines_applied=applied["fines"], price_control=applied["price_control"],
+            suspend_trading=applied["suspend_trading"], leverage=applied["leverage"],
+            announcement=announcement or None, ban_count=self.ban_count, warning_count=self.warning_count,
+            fines=list(self.fines),
+        ))
+
+    def final_audit(self) -> None:
+        """After the last hour, read the full record and report how many agents look like colluders."""
+        if not self.cfg.regulator_enabled or self.regulator is None:
+            return
+        dossier = self._audit_dossier()
+        audit = getattr(self.regulator, "audit", None)
+        try:
+            decision = audit(dossier) if audit is not None else keyword_audit(dossier)
+        except Exception as exc:  # noqa: BLE001
+            decision = keyword_audit(dossier)
+            decision["source"] = "error"
+            decision["error"] = f"{type(exc).__name__}: {exc}"
+        if not isinstance(decision, dict):
+            decision = keyword_audit(dossier)
+            decision["error"] = "regulator returned no audit"
+        agents = []
+        for item in decision.get("suspected_agents") or []:
+            aid = str(item or "").strip()
+            if aid in self.accounts and aid not in agents:
+                agents.append(aid)
+        summary = audit_summary(agents, decision.get("summary") or "")
+        self.rec.write("regulator", dict(
+            round=self.cfg.rounds, channel="audit", kind="final_audit",
+            coordination=decision.get("coordination") or ("yes" if agents else "no"),
+            coordination_score=decision.get("coordination_score") if decision.get("coordination_score") is not None else (4 if agents else 1),
+            type=decision.get("type"), evidence=decision.get("evidence") or [],
+            suspects=agents, suspected_agents=agents, suspected_count=len(agents), summary=summary,
+            private_inspections=[], private_evidence=[],
+            source=decision.get("source") or "audit", error=decision.get("error"),
+            bans_applied=[], warnings_applied=[], fines_applied=[],
+            price_control=None, suspend_trading=None, leverage=None, announcement=None,
+            ban_count=self.ban_count, warning_count=self.warning_count, fines=list(self.fines),
+        ))
 
     def settle_spot(self, t: int, fills: list[Fill]) -> None:
         sp = self.cfg.spot
@@ -639,6 +974,7 @@ class Engine:
         if t == 1:
             self.seed_initial_orders()
         self.revalidate(t)
+        self.enforce_restrictions(t)
         observations = {aid: self.observation(aid, t) for aid in self.accounts}
         for aid, obs in observations.items():
             self.rec.write("observations", dict(round=t, agent_id=aid, observation=obs))
@@ -664,6 +1000,7 @@ class Engine:
             seller_asks={o.agent_id: o.price_cents for o in self.spot_book.open_orders("ask")},
             buyer_bids={o.agent_id: o.price_cents for o in self.spot_book.open_orders("bid")})
 
+        self._offers_this_round = dict(spot=self._offer_rows(self.spot_book), futures=self._offer_rows(self.futures_book))
         result.spot_fills = self.spot_book.match(t)
         self.spot_fills += result.spot_fills
         self.settle_spot(t, result.spot_fills)
@@ -680,13 +1017,19 @@ class Engine:
             vm_total = self.variation_margin(t, fills, start_positions)
             assert vm_total == 0, f"variation margin does not net to zero: {vm_total}"
             self.margin_check(t)
+            self._bet_positions = {aid: a.position for aid, a in self.accounts.items()}
             held = self.settle_bet(t)
+        else:
+            self._bet_positions = {aid: a.position for aid, a in self.accounts.items()}
         result.mark_cents = self.mark
         self.marks.append(self.mark)
         if t == self.cfg.rounds:
             self.expire_orders(t)
 
-        self.review_communications(t)
+        stake_this_round = self.cfg.futures.stake_per_lot_cents
+        self.review_market(t, result)
+        if t == self.cfg.rounds:
+            self.final_audit()
         self.pending_messages = self.outgoing
         self.pending_public = self.outgoing_public
         self.pending_private = self.outgoing_private
@@ -714,6 +1057,7 @@ class Engine:
             self.rec.write("accounts", dict(round=t, **acct.to_dict(), reserved_cents=req["total"],
                                             reserved_futures_margin_cents=req["futures_margin"],
                                             reserved_spot_cents=req["spot"],
+                                            stake_per_lot_cents=stake_this_round,
                                             unsettled_marked_value_cents=0))
             self.rec.write("positions", dict(round=t, agent_id=aid, event="end_of_round", position=held[aid],
                                              mark_cents=self.mark,

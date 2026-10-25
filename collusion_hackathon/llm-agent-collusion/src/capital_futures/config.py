@@ -95,8 +95,11 @@ class ExperimentConfig:
     public_chat_enabled: bool = False       # every agent may read and write one shared chat
     max_message_length: int = 500
     hide_num_rounds: bool = False
-    # A regulator reads whichever message channels are on. A coordination score of 4 restricts
-    # that channel's next messages to a few characters. Off leaves messages untouched.
+    # A regulator reviews the public chat, profit and loss, and trade history each hour.
+    # If it suspects collusion it may read the private messages of at most two participants
+    # that hour. After the last hour it audits the full public and private record. It can
+    # suspend agents, warn them, set a price band, suspend trading, change leverage, and
+    # fine them. Every action is announced in public. Off leaves the market untouched.
     regulator_enabled: bool = False
     regulator_model: str = "gpt-4.1-mini"
     # agents

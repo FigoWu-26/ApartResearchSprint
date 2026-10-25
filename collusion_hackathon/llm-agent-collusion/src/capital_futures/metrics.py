@@ -238,7 +238,8 @@ def reconcile(engine, recorder) -> dict:
     ok_margin = True
     for r in recorder.rows["accounts"]:
         if r["position"] and not r["defaulted"] and not r["in_liquidation"]:
-            ok_margin &= r["equity"] >= stake_cents(r["position"], fs.multiplier, fs.stake_per_lot_cents)
+            stake = r.get("stake_per_lot_cents", fs.stake_per_lot_cents)
+            ok_margin &= r["equity"] >= stake_cents(r["position"], fs.multiplier, stake)
     checks["open_bets_covered_by_the_stake"] = ok_margin
     return dict(ok=all(checks.values()), checks=checks,
                 totals=dict(system_net_pnl_cents=total_pnl, external_in_cents=ext_in,

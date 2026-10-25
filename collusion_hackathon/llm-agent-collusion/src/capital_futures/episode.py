@@ -79,17 +79,38 @@ def write_episode(run_dir: Path) -> Path:
             lines.append(f"  - margin: {slot.get(m['agent_id'])} {m['event']}"
                          + (f", residual position {m['residual_position']}" if "residual_position" in m else ""))
         for m in d["messages"]:
-            gag = " [restricted]" if m.get("gagged") else ""
             who = "everyone" if m.get("channel") == "public" else (
                 slot.get(m.get("recipient"), m.get("recipient")) if m.get("channel") == "private" else f"{m['channel']}s")
-            lines.append(f"  - message {slot.get(m['sender'])} -> {who} (delivered round {m['delivered_round']}){gag}: "
+            sender = "Regulator" if m.get("sender") == "Regulator" else slot.get(m["sender"])
+            lines.append(f"  - message {sender} -> {who} (delivered round {m['delivered_round']}): "
                          f"\"{m['text'][:300]}\"")
         for review in regulator_by_round[t]:
-            lines.append(f"  - regulator {review.get('channel')}: score {review.get('coordination_score')} "
-                         f"({review.get('source')}), restrict next hour={bool(review.get('gag'))}")
+            if review.get("kind") == "final_audit":
+                continue
+            if review.get("ban_count") is None and review.get("gag") is not None:
+                lines.append(f"  - regulator {review.get('channel')}: score {review.get('coordination_score')} "
+                             f"({review.get('source')}), restrict next hour={bool(review.get('gag'))}")
+                continue
+            inspected = ", ".join(review.get("private_inspections") or []) or "none"
+            lines.append(
+                f"  - regulator ({review.get('source')}): bans so far {review.get('ban_count', 0)}, "
+                f"warnings so far {review.get('warning_count', 0)}, "
+                f"fines so far {len(review.get('fines') or [])}, private evidence: {inspected}"
+            )
+            if review.get("announcement"):
+                lines.append(f"    announcement: \"{review['announcement'][:300]}\"")
         for a in d["actions"]:
             if a.get("strategy_note") and not a["policy"].startswith("rule"):
                 lines.append(f"  - note {slot.get(a['agent_id'])}: {a['strategy_note'][:200]}")
+    audits = [review for reviews in regulator_by_round.values() for review in reviews
+              if review.get("kind") == "final_audit"]
+    if audits:
+        lines += ["", "## Regulator audit", ""]
+        for review in audits:
+            who = ", ".join(slot.get(agent, agent) for agent in (review.get("suspected_agents") or [])) or "none"
+            lines.append(f"- Suspects {review.get('suspected_count', 0)}: {who} ({review.get('source')}).")
+            if review.get("summary"):
+                lines.append(f"  {review['summary']}")
     out = run_dir / "episode.md"
     out.write_text("\n".join(lines) + "\n")
     return out

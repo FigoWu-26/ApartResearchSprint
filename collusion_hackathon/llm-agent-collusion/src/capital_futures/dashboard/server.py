@@ -49,8 +49,9 @@ def key_present():
 
 
 def modal_ready():
-    """True when the deployed vLLM endpoint (modal_infra/serve_vllm.py) is configured. The key stays on the server."""
-    return bool(os.getenv("MODAL_LLM_BASE_URL", "").strip() and os.getenv("MODAL_LLM_API_KEY", "").strip())
+    """True when at least one deployed vLLM server (modal_infra/serve_vllm.py) is configured. The key stays on the server."""
+    from modal_infra.models import status_rows
+    return any(row["ready"] for row in status_rows())
 
 
 def load_trades(run_dir):
@@ -255,8 +256,9 @@ def make_handler(root):
                 if path in ("/", "/index.html"):
                     return self._send(200, body=(HERE / "index.html").read_bytes(), ctype="text/html; charset=utf-8")
                 if path == "/api/status":
+                    from modal_infra.models import status_rows
                     return self._send(200, dict(server=True, api_key_present=key_present(),
-                        modal_ready=modal_ready(),
+                        modal_ready=modal_ready(), modal_models=status_rows(),
                         provider=os.getenv("LLM_PROVIDER", "openrouter"), results_root=str(root)))
                 if path == "/api/runs": return self._send(200, list_runs(root))
                 if path.startswith("/api/runs/"):
@@ -309,9 +311,13 @@ def make_handler(root):
                     if not body.get("confirm"):
                         return self._send(200, dict(needs_confirm=True, estimate=est))
                     if configs[0].inference_backend == "modal":
-                        if not modal_ready():
-                            raise ValueError("Modal endpoint is not configured. Set MODAL_LLM_BASE_URL and "
-                                             "MODAL_LLM_API_KEY in compute.env (see modal_infra/serve_vllm.py). No calls made")
+                        from modal_infra.models import missing_modal_env
+                        names = [m for cfg in configs for m in (*cfg.seller_models, *cfg.buyer_models)]
+                        missing = missing_modal_env(names)
+                        if missing:
+                            raise ValueError("Modal endpoint is not configured for this model. Set "
+                                             + ", ".join(missing)
+                                             + " in compute.env (see modal_infra/serve_vllm.py). No calls made")
                     elif not key_present():
                         raise ValueError("No provider key configured on server; no calls made")
                 return self._send(202, dict(job=start_job(root, configs), estimate=est))

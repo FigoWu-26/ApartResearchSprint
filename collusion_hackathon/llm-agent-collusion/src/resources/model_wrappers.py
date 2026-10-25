@@ -98,16 +98,24 @@ class OpenRouterClient(ModelWrapper):
         self.last_usage: Optional[dict] = None
         self.last_reasoning: Optional[str] = None
         if model_name.startswith("modal:"):
-            # The agent model is served by modal_infra/serve_vllm.py. Skip resolve_model, which would
+            # Served by modal_infra/serve_vllm.py. Skip resolve_model, which would
             # otherwise rewrite the id to an OpenRouter model of the same name.
+            # Kimi and Gemma each have their own base URL; an unknown id still uses the Qwen server.
+            from modal_infra.models import disable_thinking, url_env_for
+
             self.model_name = model_name[len("modal:"):]
-            self.client = OpenAI(
-                base_url=os.environ["MODAL_LLM_BASE_URL"],
-                api_key=os.environ["MODAL_LLM_API_KEY"],
-                timeout=180,
-            )
+            url_env = url_env_for(self.model_name)
+            base_url = os.environ.get(url_env, "").strip()
+            api_key = os.environ.get("MODAL_LLM_API_KEY", "").strip()
+            if not base_url or not api_key:
+                raise RuntimeError(
+                    f"Modal endpoint for {self.model_name} is not configured. "
+                    f"Set {url_env} and MODAL_LLM_API_KEY (see modal_infra/serve_vllm.py)."
+                )
+            self.client = OpenAI(base_url=base_url, api_key=api_key, timeout=180)
             self.additional_params.pop("response_format", None)  # vLLM here is not started with --guided-decoding
-            self.additional_params["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
+            if disable_thinking(self.model_name):
+                self.additional_params["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
         else:
             self.model_name = resolve_model(model_name)
             self.client = make_client(timeout=120)
