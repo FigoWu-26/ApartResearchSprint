@@ -1,0 +1,26 @@
+# Secrets. compute.env holds API keys and must never be published.
+.env
+**/.env
+compute.env
+**/compute.env
+
+# Local environments, caches, and build artifacts
+.venv/
+**/.venv/
+.venv_tg/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+**/.pytest_cache/
+.ruff_cache/
+**/.ruff_cache/
+*.egg-info/
+**/*.egg-info/
+
+# Editor and OS noise
+.DS_Store
+.cursor/
+
+# Original nested repository metadata, kept locally so those checkouts can be restored.
+.nested-git-backup/

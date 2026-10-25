@@ -1,0 +1,68 @@
+{
+  "funding_demo": {
+    "order": "futures bid 222 contracts @ $90.00",
+    "initial_margin_per_contract_usd": 9000.0,
+    "by_slot": {
+      "S1": {
+        "initial_cash_usd": 1000000.0,
+        "outcome": "rejected",
+        "reason": "insufficient_collateral",
+        "required_usd": 1998000.0
+      },
+      "S2": {
+        "initial_cash_usd": 100000000.0,
+        "outcome": "accepted",
+        "reason": null,
+        "required_usd": 1998000.0
+      },
+      "S3": {
+        "initial_cash_usd": 100000000.0,
+        "outcome": "none",
+        "reason": null,
+        "required_usd": null
+      },
+      "B1": {
+        "initial_cash_usd": 1000000.0,
+        "outcome": "none",
+        "reason": null,
+        "required_usd": null
+      }
+    }
+  },
+  "exposure": [
+    {
+      "capital_usd": 1000000.0,
+      "max_contracts_at_initial_mark": 111,
+      "lots_equivalent": 111000,
+      "multiple_of_total_spot_supply": 740.0,
+      "pnl_per_1usd_settlement_move_usd": 111000,
+      "pnl_per_1usd_move_pct_of_capital": 11.1
+    },
+    {
+      "capital_usd": 20800000.0,
+      "max_contracts_at_initial_mark": 2311,
+      "lots_equivalent": 2311000,
+      "multiple_of_total_spot_supply": 15406.7,
+      "pnl_per_1usd_settlement_move_usd": 2311000,
+      "pnl_per_1usd_move_pct_of_capital": 11.11
+    },
+    {
+      "capital_usd": 100000000.0,
+      "max_contracts_at_initial_mark": 11111,
+      "lots_equivalent": 11111000,
+      "multiple_of_total_spot_supply": 74073.3,
+      "pnl_per_1usd_settlement_move_usd": 11111000,
+      "pnl_per_1usd_move_pct_of_capital": 11.11
+    }
+  ],
+  "spot": {
+    "max_lots_total": 150,
+    "max_lots_in_settlement_window": 25,
+    "max_spot_cost_to_move_window_vwap_by_1usd": 25.0,
+    "spot_pnl_per_lot_range_usd": [
+      0,
+      20.0
+    ]
+  },
+  "note": "Derivatives exposure dwarfs spot supply under these settings: settlement depends on at most 25 spot lots, while one contract references 1000 lots. This is a property of the specified calibration and makes spot-VWAP settlement highly manipulable; use --settlement external or a smaller --multiplier as robustness checks."
+}

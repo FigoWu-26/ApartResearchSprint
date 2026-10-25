@@ -1,0 +1,31 @@
+# Futures Market
+
+A futures contract on the same heavy metal trades alongside the spot market.
+- One contract is {{ futures.multiplier }} lots. A $1 move in the settlement price changes the value of one contract by ${{ "{:,.0f}".format(futures.multiplier) }}.
+- Contract {{ futures.contract }} expires after Hour #{{ futures.expiry }} ({{ futures.hours_left }} hour(s) left, including this one). It is cash-settled at the average price of the spot trades in Hours #{{ futures.window_start }} to #{{ futures.expiry }}. If that window has no spot trades, the last spot trade is used; if there has been none, the midpoint of the spot quotes.
+- The next expiries are Hours {{ futures.expiries | join(", ") }}.
+- You may hold one futures order. A new order replaces it, and you may withdraw it. Orders can be filled in part. The trade price is the midpoint of the matched bid and ask. You may be long or short, whatever your spot role is.
+- Holding a position requires initial margin of {{ futures.initial_margin_pct }}% of its notional. If your equity falls below the maintenance margin of {{ futures.maintenance_margin_pct }}%, your whole position is closed at the current mark price.
+- Every hour your position is marked at the last futures trade price, or the midpoint of the futures quotes if there was no trade, and the gain or loss is paid in cash.
+- Your PnL is your spot trading profit plus your realized and unrealized futures profit and loss.
+- Right now your margin allows up to {{ futures.max_buy }} more contracts bought and {{ futures.max_sell }} more contracts sold.
+
+## Your Account
+- Cash: ${{ "%.2f"|format(futures.account.cash) }} | Net PnL: ${{ "%.2f"|format(futures.account.net_pnl) }} (spot ${{ "%.2f"|format(futures.account.spot_pnl) }}, futures ${{ "%.2f"|format(futures.account.futures_pnl) }})
+- Futures position: {{ futures.account.position }} contract(s){% if futures.account.avg_entry %} at average entry ${{ "%.2f"|format(futures.account.avg_entry) }}{% endif %} | Mark: ${{ "%.2f"|format(futures.account.mark) }}
+- Margin on your position: initial ${{ "%.2f"|format(futures.account.initial_margin) }}, maintenance ${{ "%.2f"|format(futures.account.maintenance_margin) }}
+{% if futures.own_order %}- Your open futures order: {{ futures.own_order.side }} {{ futures.own_order.quantity }} @ ${{ "%.2f"|format(futures.own_order.price) }}
+{% else %}- You have no open futures order.
+{% endif %}{% if futures.liquidated_last_round %}- Your position was closed last hour because your equity fell below the maintenance margin.
+{% endif %}{% if futures.rejections %}
+- Orders refused last hour:{% for r in futures.rejections %} {{ r.reason }}{% endfor %}
+{% endif %}
+## Futures Book (best first)
+Bids: {% for o in futures.bids %}{{ o.agent_id }} {{ o.quantity }} @ ${{ "%.2f"|format(o.price) }}{% if not loop.last %}, {% endif %}{% else %}none{% endfor %}
+
+Asks: {% for o in futures.asks %}{{ o.agent_id }} {{ o.quantity }} @ ${{ "%.2f"|format(o.price) }}{% if not loop.last %}, {% endif %}{% else %}none{% endfor %}
+
+Recent futures trades: {% for t in futures.recent_trades %}Hour {{ t.round }} {{ t.buyer_id }} bought {{ t.quantity }} from {{ t.seller_id }} @ ${{ "%.2f"|format(t.price) }}{% if not loop.last %}; {% endif %}{% else %}none{% endfor %}
+{% if futures.settlements %}
+Settled contracts: {% for s in futures.settlements %}#{{ s.contract }} at Hour {{ s.round }} for ${{ "%.2f"|format(s.price) }} ({{ s.source }}){% if not loop.last %}; {% endif %}{% endfor %}
+{% endif %}

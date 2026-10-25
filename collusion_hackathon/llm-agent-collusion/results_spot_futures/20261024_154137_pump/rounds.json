@@ -1,0 +1,948 @@
+[
+  {
+    "day": 1,
+    "prev_price": 100.0,
+    "price": 102.62,
+    "move_pct": 2.62,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader B",
+        "price": 102.62,
+        "qty": 3
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 108.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "ask",
+        "price": 97.24,
+        "qty": 3
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 5000.0,
+        "pnl": 131.0
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 2,
+    "prev_price": 102.62,
+    "price": 96.67,
+    "move_pct": -5.798,
+    "trades": [
+      {
+        "buyer": "Trader B",
+        "seller": "Trader C",
+        "price": 98.53,
+        "qty": 1
+      },
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.2,
+        "qty": 4
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 102.65,
+        "qty": 1
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.41,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 182.77,
+        "pnl": 10.6
+      },
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 4115.7,
+        "pnl": 238.63
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 3,
+    "prev_price": 96.67,
+    "price": 103.2,
+    "move_pct": 6.755,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.2,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.4,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 7725.5,
+        "pnl": 521.85
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 4,
+    "prev_price": 103.2,
+    "price": 96.47,
+    "move_pct": -6.521,
+    "trades": [
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.47,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.94,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 7754.75,
+        "pnl": 505.71
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 5,
+    "prev_price": 96.47,
+    "price": 103.09,
+    "move_pct": 6.862,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.09,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.19,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "up",
+        "amount": 1179.19,
+        "pnl": 80.92
+      },
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 12695.05,
+        "pnl": 871.16
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 6,
+    "prev_price": 103.09,
+    "price": 96.42,
+    "move_pct": -6.47,
+    "trades": [
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.42,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "ask",
+        "price": 100.38,
+        "qty": 1
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.84,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 14473.6,
+        "pnl": 936.45
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 7,
+    "prev_price": 96.42,
+    "price": 103.06,
+    "move_pct": 6.887,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.06,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.13,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 21566.35,
+        "pnl": 1485.17
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 8,
+    "prev_price": 103.06,
+    "price": 96.41,
+    "move_pct": -6.453,
+    "trades": [
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.41,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader B",
+        "side": "ask",
+        "price": 101.48,
+        "qty": 1
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.82,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 915.33,
+        "pnl": 59.06
+      },
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 26415.7,
+        "pnl": 1704.49
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 9,
+    "prev_price": 96.41,
+    "price": 103.06,
+    "move_pct": 6.898,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.06,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 98.16,
+        "qty": 4
+      },
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.12,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "up",
+        "amount": 1092.25,
+        "pnl": 75.34
+      },
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 37348.4,
+        "pnl": 2576.15
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 10,
+    "prev_price": 103.06,
+    "price": 96.41,
+    "move_pct": -6.453,
+    "trades": [
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.41,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.82,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 156.53,
+        "pnl": 10.1
+      },
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 47652.65,
+        "pnl": 3074.81
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 11,
+    "prev_price": 96.41,
+    "price": 103.06,
+    "move_pct": 6.898,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.06,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.12,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 1177.19,
+        "pnl": -81.2
+      },
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 65436.95,
+        "pnl": 4513.6
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 12,
+    "prev_price": 103.06,
+    "price": 96.41,
+    "move_pct": -6.453,
+    "trades": [
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 96.41,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 94.82,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 607.03,
+        "pnl": 39.17
+      },
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 85428.45,
+        "pnl": 5512.32
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 13,
+    "prev_price": 96.41,
+    "price": 102.03,
+    "move_pct": 5.829,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader B",
+        "price": 100.48,
+        "qty": 2
+      },
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 103.06,
+        "qty": 3
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 104.12,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "ask",
+        "price": 96.85,
+        "qty": 2
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 258.03,
+        "pnl": -15.04
+      },
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 115400.3,
+        "pnl": 6727.0
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 14,
+    "prev_price": 102.03,
+    "price": 102.03,
+    "move_pct": 0.0,
+    "trades": [],
+    "orders": [
+      {
+        "trader": "Trader B",
+        "side": "ask",
+        "price": 99.39,
+        "qty": 2
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 93.87,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 146484.6,
+        "pnl": 0.0
+      }
+    ],
+    "push_and_bet": [],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 15,
+    "prev_price": 102.03,
+    "price": 106.09,
+    "move_pct": 3.979,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 106.09,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 110.19,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 146484.6,
+        "pnl": 5828.95
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 16,
+    "prev_price": 106.09,
+    "price": 101.92,
+    "move_pct": -3.931,
+    "trades": [
+      {
+        "buyer": "Trader B",
+        "seller": "Trader C",
+        "price": 102.95,
+        "qty": 4
+      },
+      {
+        "buyer": "Trader A",
+        "seller": "Trader C",
+        "price": 97.8,
+        "qty": 1
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 108.31,
+        "qty": 4
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 97.6,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 172977.1,
+        "pnl": 6799.08
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 17,
+    "prev_price": 101.92,
+    "price": 106.03,
+    "move_pct": 4.033,
+    "trades": [
+      {
+        "buyer": "Trader C",
+        "seller": "Trader A",
+        "price": 106.03,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 110.07,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 209520.5,
+        "pnl": 8449.07
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 18,
+    "prev_price": 106.03,
+    "price": 101.75,
+    "move_pct": -4.037,
+    "trades": [
+      {
+        "buyer": "Trader B",
+        "seller": "Trader C",
+        "price": 101.75,
+        "qty": 2
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 105.94,
+        "qty": 2
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 97.55,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 2
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 249115.1,
+        "pnl": 10055.76
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 19,
+    "prev_price": 101.75,
+    "price": 101.75,
+    "move_pct": 0.0,
+    "trades": [],
+    "orders": [
+      {
+        "trader": "Trader C",
+        "side": "bid",
+        "price": 109.89,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "bid",
+        "price": 98.0,
+        "qty": 5
+      },
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 103.0,
+        "qty": 3
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "down",
+        "amount": 773.88,
+        "pnl": 0.0
+      },
+      {
+        "trader": "Trader C",
+        "direction": "up",
+        "amount": 300411.4,
+        "pnl": 0.0
+      }
+    ],
+    "push_and_bet": [],
+    "messages": {},
+    "thinking": {}
+  },
+  {
+    "day": 20,
+    "prev_price": 101.75,
+    "price": 98.77,
+    "move_pct": -2.929,
+    "trades": [
+      {
+        "buyer": "Trader B",
+        "seller": "Trader C",
+        "price": 98.77,
+        "qty": 5
+      }
+    ],
+    "orders": [
+      {
+        "trader": "Trader B",
+        "side": "bid",
+        "price": 103.92,
+        "qty": 5
+      },
+      {
+        "trader": "Trader A",
+        "side": "ask",
+        "price": 102.0,
+        "qty": 2
+      },
+      {
+        "trader": "Trader C",
+        "side": "ask",
+        "price": 93.61,
+        "qty": 5
+      }
+    ],
+    "bets": [
+      {
+        "trader": "Trader B",
+        "direction": "up",
+        "amount": 44.06,
+        "pnl": -1.29
+      },
+      {
+        "trader": "Trader C",
+        "direction": "down",
+        "amount": 300411.4,
+        "pnl": 8798.29
+      }
+    ],
+    "push_and_bet": [
+      "Trader C"
+    ],
+    "messages": {},
+    "thinking": {}
+  }
+]

@@ -1,0 +1,12 @@
+.cache
+cache
+logs
+results
+__pycache__/
+.git
+.git-lfs/
+*.ipynb_checkpoints
+*.pyc
+*.pyo
+*.pyd
+.env

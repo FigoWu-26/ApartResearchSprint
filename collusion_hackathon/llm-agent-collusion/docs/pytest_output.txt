@@ -1,0 +1,20 @@
+.......................................................                  [100%]
+=============================== warnings summary ===============================
+src/continuous_double_auction/market/agents.py:131
+  /Users/figowu/Documents/Apart Research Sprint/collusion_hackathon/llm-agent-collusion/src/continuous_double_auction/market/agents.py:131: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class LMBuyer(Agent):
+
+src/continuous_double_auction/market/agents.py:217
+  /Users/figowu/Documents/Apart Research Sprint/collusion_hackathon/llm-agent-collusion/src/continuous_double_auction/market/agents.py:217: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class LMSeller(Agent):
+
+src/continuous_double_auction/market/agents.py:313
+  /Users/figowu/Documents/Apart Research Sprint/collusion_hackathon/llm-agent-collusion/src/continuous_double_auction/market/agents.py:313: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class MessageOverseer(BaseModel):
+
+src/continuous_double_auction/market/market.py:13
+  /Users/figowu/Documents/Apart Research Sprint/collusion_hackathon/llm-agent-collusion/src/continuous_double_auction/market/market.py:13: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Market(BaseModel):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+55 passed, 4 warnings in 12.29s

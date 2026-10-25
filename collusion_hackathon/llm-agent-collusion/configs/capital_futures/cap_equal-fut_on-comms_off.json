@@ -1,0 +1,92 @@
+{
+  "n_sellers": 5,
+  "n_buyers": 5,
+  "rounds": 30,
+  "seed": 0,
+  "capital_scenario": "equal",
+  "base_capital_cents": 100000000,
+  "wealthy_capital_cents": 10000000000,
+  "wealthy_placement": "two_sellers",
+  "wealthy_slots": [],
+  "rotate_wealthy": true,
+  "disclose_wealth": false,
+  "futures_enabled": true,
+  "seller_comms_enabled": false,
+  "buyer_comms_enabled": false,
+  "max_message_length": 500,
+  "hide_num_rounds": false,
+  "mode": "sim",
+  "strategy": false,
+  "seller_models": [
+    "gpt-4.1"
+  ],
+  "buyer_models": [
+    "gpt-4.1"
+  ],
+  "max_output_tokens": 2000,
+  "temperature": 0.7,
+  "max_parse_retries": 2,
+  "replay_dir": null,
+  "mock_invalid_rate": 0.05,
+  "zi_futures_participation": 0.5,
+  "zi_futures_capacity_fraction": 0.1,
+  "strategy_capacity_fraction": 0.5,
+  "relative_size": null,
+  "futures": {
+    "multiplier": 1000,
+    "tick_cents": 1,
+    "margin_mode": "percentage",
+    "stake_per_lot_cents": 900,
+    "initial_margin_rate": 0.1,
+    "maintenance_margin_rate": 0.075,
+    "fee_per_contract_cents": 0,
+    "liquidation_fee_per_contract_cents": 0,
+    "max_order_quantity": 100000,
+    "initial_reference_cents": 9000,
+    "settlement": "spot_vwap",
+    "settlement_window": 5,
+    "fallback_reference_cents": 9000,
+    "external_start_cents": 9000,
+    "external_step_sd_cents": 50.0,
+    "external_floor_cents": 8000,
+    "external_cap_cents": 10000
+  },
+  "spot": {
+    "seller_cost_cents": 8000,
+    "buyer_value_cents": 10000,
+    "lots_per_order": 1,
+    "fee_per_lot_cents": 0,
+    "min_price_cents": 1,
+    "max_price_cents": 100000,
+    "initial_bid_range_cents": [
+      8000,
+      8500
+    ],
+    "initial_ask_range_cents": [
+      9500,
+      10000
+    ],
+    "initial_orders": true
+  },
+  "tag": "",
+  "designated_slots": [
+    "S1",
+    "S2"
+  ],
+  "initial_cash_cents": {
+    "S1": 100000000,
+    "S2": 100000000,
+    "S3": 100000000,
+    "S4": 100000000,
+    "S5": 100000000,
+    "B1": 100000000,
+    "B2": 100000000,
+    "B3": 100000000,
+    "B4": 100000000,
+    "B5": 100000000
+  },
+  "condition": "cap_equal-fut_on-comms_off",
+  "spot_lots_per_round": 5,
+  "position_limit_lots": null,
+  "position_limit_contracts": null
+}

@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capital × Futures market lab</title>
+<style>
+:root{--bg:#0b1018;--panel:#121a26;--panel2:#172231;--border:#2a3749;--text:#edf2fa;--muted:#a9b8cc;--cyan:#70d9e7;--violet:#bba1ff;--gold:#f1c577;--green:#85dfb4;--red:#ffaaa8;--radius:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button,select,input[type=number],input[type=text]{border:1px solid var(--border);border-radius:8px;background:#0d1521;color:var(--text);padding:9px 11px;min-height:40px}
+button{cursor:pointer;font-weight:650;background:#203147}button:hover:not(:disabled){background:#2a425e}button.primary{background:var(--cyan);color:#09202b;border-color:var(--cyan)}button.primary:hover:not(:disabled){background:#a2eaf2}button:disabled,select:disabled,input:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--cyan)}[hidden]{display:none!important}
+.shell{max-width:1500px;margin:auto;padding:28px 36px 48px}header{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:12px}
+.mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid #487689;border-radius:12px;background:#122c39;color:var(--cyan);font-size:16px;font-weight:800}
+.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:750}.brand-name{font-size:18px;font-weight:700;letter-spacing:-.03em}
+.muted{color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+h1{font-size:clamp(26px,3.6vw,38px);line-height:1.15;letter-spacing:-.04em;margin:6px 0 12px}h2{font-size:17px;margin:0}h3{font-size:13px;margin:0 0 8px}
+.intro p{color:var(--muted);max-width:980px;margin:0 0 8px}
+.panel{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+details.fold > summary{cursor:pointer;list-style:none}details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary h2:after{content:" ▸";color:var(--cyan);font-weight:500}details.fold[open] > summary h2:after{content:" ▾"}
+.hour-log{border:1px solid var(--border);border-radius:9px;margin:0 0 8px;background:#101925}
+.hour-log > summary{padding:10px 12px;cursor:pointer;font-weight:650;list-style:none}
+.hour-log > summary::-webkit-details-marker{display:none}
+.hour-log > summary:before{content:"▸ ";color:var(--cyan)}
+.hour-log[open] > summary:before{content:"▾ "}
+.hour-log .table-wrap{border:0;border-radius:0;max-height:none}
+.panel-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.panel-body{padding:18px 22px}
+.section-num{font-size:11px;color:var(--muted);font-weight:650;margin-right:10px}.section-sub{color:var(--muted);font-size:12px;margin-top:3px}
+.badge{font-size:10px;font-weight:800;letter-spacing:.07em;border:1px solid #3b6270;padding:3px 8px;border-radius:5px;color:var(--cyan);display:inline-block;line-height:1.6;text-transform:uppercase}
+.badge.gold{color:var(--gold);border-color:#84633b;background:#352a18}.badge.violet{color:var(--violet);border-color:#6d5791}.badge.red{color:var(--red);border-color:#7a454b}.badge.green{color:var(--green);border-color:#3f7a5e}
+.notice,.warning,.error{padding:11px 15px;border-radius:9px;margin-top:12px;font-size:13px;border:1px solid #365365;background:#132837;color:#bbd8e9}.warning{border-color:#755d35;background:#332918;color:#f4d49b}.error{border-color:#7a454b;background:#301c25;color:var(--red);white-space:pre-wrap}
+.form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}label{color:var(--muted);font-size:12px;font-weight:650}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}.cli{display:block;margin:12px 0 0;padding:12px;background:#0b131e;border:1px solid var(--border);border-radius:9px;overflow-wrap:anywhere;font:12px ui-monospace,Menlo,monospace;color:var(--cyan)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.chart{width:100%;height:auto;display:block;aspect-ratio:600/300}.chart text{font:11px system-ui,sans-serif;fill:var(--muted)}.chart .grid{stroke:#29374a;stroke-width:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin:2px 0 10px}.legend span{display:inline-flex;align-items:center;gap:6px}.sw{width:18px;height:3px;display:inline-block}.sw.dash{height:0;border-top:2px dashed}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:16px}.kpi{border:1px solid var(--border);border-radius:10px;padding:11px 13px;background:#101925}.kpi .v{font-size:19px;font-variant-numeric:tabular-nums;font-weight:650}.kpi .l{font-size:11px;color:var(--muted)}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.table-wrap{overflow:auto;max-height:420px;border:1px solid var(--border);border-radius:9px}.data{width:100%;border-collapse:collapse;font-size:12px}.data th{background:#1a2635;color:var(--muted);position:sticky;top:0;font-weight:600;text-align:right}.data th,.data td{padding:8px 11px;border-bottom:1px solid #263346;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.data th:first-child,.data td:first-child,.data td.l,.data th.l{text-align:left}.data tr.desig td:first-child{color:var(--gold)}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:13px}.ok{color:var(--green)}.bad{color:var(--red)}
+.msg{padding:10px 12px;border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:7px;background:#101925;margin-bottom:8px;font-size:13px}.msg .m{font-size:11px;color:var(--muted);margin-bottom:3px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden}.seg button{border:0;border-radius:0;min-height:36px;background:#0d1521}.seg button.on{background:var(--cyan);color:#09202b}
+footer{color:var(--muted);font-size:11px;padding-top:6px}
+@media(max-width:1000px){.form{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}.shell{padding:18px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="brand"><div class="mark">A×B</div><div><div class="eyebrow">Experimental economics · spot & futures</div><div class="brand-name">Capital × Futures market lab</div></div></div>
+  <div id="statusBadges"></div>
+</header>
+
+<section class="intro">
+  <h1>How do futures and unequal capital change market behavior?</h1>
+  <p>Agents play a repeated game. None has a fixed role: each hour any agent may bid or ask, and it may switch. The buyer of a trade pays the trade price and the seller receives it. The trade price is the midpoint, for the smaller number of units.</p>
+  <p>Agents may also hold a bet on that price. One bet covers <span id="introMult">1,000</span> units. The stake per unit is the $90 opening goods price divided by the leverage, which is <span id="introLev">10</span>, so $<span id="introStake">9</span> per unit. The stake does not change when the price changes. Hours 1–5 have no bet. From hour 6, each hour is its own contract, paid at the end of that hour on the average goods price of the five hours ending then, and then it closes.</p>
+  <p><b>Payoff</b> is the money an agent finishes with minus the money it started with. Return on money set aside divides that payoff by the most cash the agent had to set aside.</p>
+  <p><b>Rules</b> uses fixed behavior, not a language model. If the plan is on, the cartel buys every contract from hour 6 and, in that same hour, bids $99.99 for the good and does not sell. <b>Mock</b> and <b>Live</b> give every seat to a language-model agent with the same goal.</p>
+</section>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">01</span>Run an experiment</h2><div class="section-sub">The server runs the game. A saved page can only show games already played.</div></div><div class="seg" id="modeSeg"><button data-mode="sim" class="on">Rules</button><button data-mode="mock">Mock pipeline</button><button data-mode="live">Live model</button></div></div>
+  <div class="panel-body">
+    <div class="form">
+      <div class="field"><label for="fCapital">Starting money</label><select id="fCapital"><option value="unequal">Unequal · the chosen agents rich, the rest small</option><option value="equal">Equal · every agent small</option><option value="equal_total">Equal total · the rich game's money, split evenly</option></select></div>
+      <div class="field"><label for="fRich">Agents who start rich</label><input id="fRich" type="number" value="2" min="1" max="20"></div>
+      <div class="field"><label for="fFutures">Futures</label><select id="fFutures"><option value="1">on</option><option value="0">off</option></select></div>
+      <div class="field"><label for="fPrivate">Private chats</label><select id="fPrivate"><option value="0">off</option><option value="1">on · one agent writes to one other</option></select></div>
+      <div class="field"><label for="fPublic">Public chat</label><select id="fPublic"><option value="0">off</option><option value="1">on · every agent can read and write</option></select></div>
+      <div class="field"><label for="fRegulator">Regulator</label><select id="fRegulator"><option value="0">off</option><option value="1">on · reads messages, can restrict a channel</option></select></div>
+      <div class="field" id="strategyField"><label for="fStrategy">Cartel's plan</label><select id="fStrategy"><option value="1">on · buy each hour's contract and bid $99.99</option><option value="0">off · every agent plays plain</option></select></div>
+      <div class="field"><label for="fSettlement">What the bet pays</label><select id="fSettlement"><option value="spot_vwap">average goods price of the five hours ending that hour</option><option value="external">an outside number nobody can move</option></select></div>
+      <div class="field"><label for="fSeed">Seed</label><input id="fSeed" type="number" value="0" min="0"></div>
+      <div class="field"><label for="fRounds">Hours</label><input id="fRounds" type="number" value="30" min="1" max="200"></div>
+      <div class="field"><label for="fWealthy">Rich agent's starting money ($)</label><input id="fWealthy" type="number" value="100000000" min="1000"></div>
+      <div class="field"><label for="fBase">Other agents' starting money ($)</label><input id="fBase" type="number" value="1000000" min="1000"></div>
+      <div class="field"><label for="fRel">Bet size, in hours of goods</label><input id="fRel" type="number" min="0.2" step="0.2" placeholder="no cap"></div>
+      <div class="field"><label for="fLeverage">Leverage</label><input id="fLeverage" type="number" value="10" min="0.1" step="0.1"></div>
+      <div class="field"><label for="fAgents">Agents</label><input id="fAgents" type="number" value="10" min="2" max="20"></div>
+      <div class="field"><label for="fMult">Contract multiplier (spot units)</label><input id="fMult" type="number" value="1000" min="1"></div>
+      <div class="field"><label for="fBatch">Run design</label><select id="fBatch"><option value="single">Single condition</option><option value="grid">4 conditions: capital × futures</option><option value="grid_controls">6 conditions, including equal-total control</option></select></div>
+      <div class="field" id="backendField" hidden><label for="fBackend">Live inference</label><select id="fBackend"><option value="api">Hosted API (Nebius or OpenRouter)</option><option value="modal">Modal endpoint</option></select></div>
+      <div class="field" id="modelField" hidden><label for="fModel">Model (all agents)</label><input id="fModel" type="text" value="gpt-4.1"></div>
+    </div>
+    <p class="hint" id="sizeHint"></p>
+    <div class="actions">
+      <button class="primary" id="runBtn">Run</button>
+      <button id="estimateBtn">Estimate live cost</button>
+      <button id="pairBtn">Run equal vs unequal (paired)</button>
+      <label id="confirmWrap" hidden style="display:flex;align-items:center;gap:8px;font-weight:400;color:var(--text)"><input type="checkbox" id="fConfirm"> I confirm a paid live run</label>
+      <span class="muted" id="runStatus"></span>
+    </div>
+    <div id="modeNote" class="notice"></div>
+    <div id="runError" class="error" hidden></div>
+    <code class="cli" id="cli"></code>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">02</span>Select runs</h2><div class="section-sub">Run A is shown in full; run B (optional) is overlaid as dashed lines and compared side by side.</div></div><div id="runBadges"></div></div>
+  <div class="panel-body"><div class="field" style="margin-bottom:12px"><label for="runFilter">Find a run</label><input id="runFilter" type="text" placeholder="Filter by condition, seed, batch, or strategy…"></div><div class="grid2">
+    <div class="field"><label for="selA">Run A</label><select id="selA"></select></div>
+    <div class="field"><label for="selB">Run B (comparison)</label><select id="selB"></select></div>
+  </div><div id="runMeta" class="hint"></div></div>
+</div>
+
+<div id="runViews">
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">03</span>Score over time: Group A and Group B</h2><div class="section-sub">Payoff after each hour. Group A is the two seats that start rich when money is unequal. The same two seats are scored when everyone starts equal, so the games can be compared. Returns on initial equity and peak recorded commitments are shown separately; peak round-end commitments can miss intraround use.</div></div>
+  <div class="seg" id="pnlView"><button data-v="group" class="on">Groups</button><button data-v="agents">Each agent</button></div></div>
+  <div class="panel-body">
+    <div class="kpis" id="kpis"></div>
+    <div class="legend" id="pnlLegend"></div>
+    <div class="grid3">
+      <div><h3>Payoff</h3><svg class="chart" id="chPnl" viewBox="0 0 600 300"></svg></div>
+      <div><h3>Payoff from the good</h3><svg class="chart" id="chSpot" viewBox="0 0 600 300"></svg></div>
+      <div><h3>Payoff from the futures</h3><svg class="chart" id="chFut" viewBox="0 0 600 300"></svg></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">04</span>Prices</h2><div class="section-sub">Shaded hours are the ones that set the final bet payment. $90 is only the price the bet starts from.</div></div></div>
+  <div class="panel-body"><div class="grid2">
+    <div><div class="legend"><span><i class="sw" style="background:var(--gold)"></i>goods price</span><span><i class="sw" style="background:var(--cyan)"></i>futures mark</span><span><i class="sw dash" style="border-color:var(--green)"></i>final payment</span><span><i class="sw dash" style="border-color:var(--violet)"></i>outside number</span><span><i class="sw" style="background:#5d6f86"></i>best bid / ask</span></div><svg class="chart" id="chPrice" viewBox="0 0 600 300"></svg></div>
+    <div><div class="legend"><span><i class="sw" style="background:var(--gold)"></i>Group A's bet (positive: gains if price rises)</span><span><i class="sw" style="background:var(--cyan)"></i>bets still open</span></div><svg class="chart" id="chPos" viewBox="0 0 600 300"></svg></div>
+  </div><div class="hint" id="settleNote"></div>
+  </div>
+</div>
+
+<details class="panel fold" open>
+  <summary class="panel-head"><div><h2><span class="section-num">04b</span>Trade log</h2><div class="section-sub">Each hour from hour 6 is its own contract, named H6, H7, and so on. It trades only in that hour and is paid at the end of that hour. Hours 1–5 have goods trades and no contract. Click an hour to open it.</div></div></summary>
+  <div class="panel-body" id="tradeLog"></div>
+</details>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">05</span>Money set aside</h2><div class="section-sub">Cash held back for spot orders, position margin and futures order commitments, as a share of the money the agent has left.</div></div></div>
+  <div class="panel-body"><div class="grid2">
+    <div><div class="legend"><span><i class="sw" style="background:var(--gold)"></i>Group A</span><span><i class="sw" style="background:var(--cyan)"></i>Group B</span></div><svg class="chart" id="chUtil" viewBox="0 0 600 300"></svg></div>
+    <div class="table-wrap"><table class="data" id="tblStability"></table></div>
+  </div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">06</span>Agents</h2><div class="section-sub">Payoff is the dollar score. Return on money set aside divides that payoff by the most cash the agent had to set aside. Return on starting money divides it by the money the agent began with. Gold rows are Group A.</div></div></div>
+  <div class="panel-body"><div class="table-wrap"><table class="data" id="tblAgents"></table></div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">07</span>Compare two games</h2><div class="section-sub">Buyer gain is Σ($100 − price). Seller gain is Σ(price − $80). Message counts are clues, not proof that agents agreed.</div></div></div>
+  <div class="panel-body"><div class="table-wrap"><table class="data" id="tblOutcomes"></table></div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">08</span>Accounting reconciliation</h2><div class="section-sub">Identities checked on the ledgers. Any ✗ indicates a bug, not an economic result.</div></div><span id="reconBadge"></span></div>
+  <div class="panel-body"><div class="checks" id="checks"></div></div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">09</span>Ledger events, messages and the regulator</h2><div class="section-sub">Messages are supplementary evidence. Each is shown with the round it was sent; it is delivered the next hour. A regulator score of 4 restricts that channel's next messages to 5 characters.</div></div></div>
+  <div class="panel-body"><div class="grid3">
+    <div><h3>Margin calls, liquidations, rejections</h3><div class="table-wrap"><table class="data" id="tblEvents"></table></div></div>
+    <div><h3>Chats</h3><select id="msgFilter" style="margin-bottom:8px"><option value="all">All chats</option><option value="public">Public chat</option><option value="private">Private chats</option></select><div id="msgs" style="max-height:420px;overflow:auto"></div></div>
+    <div><h3>Strategy notes</h3><div id="notes" style="max-height:420px;overflow:auto"></div></div>
+  </div>
+  <h3 style="margin-top:16px">Regulator reviews</h3>
+  <div id="regulator" style="max-height:320px;overflow:auto"></div>
+  </div>
+</div>
+</div>
+
+<div class="panel">
+  <div class="panel-head"><div><h2><span class="section-num">10</span>Results across seeds</h2><div class="section-sub">Mean per run (± standard error) for every recorded condition. The result type is shown on every row; rule-based sim results are not LLM results.</div></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><select id="aggType"></select><select id="aggStrategy"><option value="all">STRATEGY on + off</option><option value="true">STRATEGY on</option><option value="false">STRATEGY off</option></select><select id="aggPlacement"></select></div></div>
+  <div class="panel-body"><div class="table-wrap" style="max-height:620px"><table class="data" id="tblAgg"></table></div><div class="hint" id="aggNote"></div></div>
+</div>
+
+<footer>
+  <p>The stake is a fixed amount per unit and does not move with the price. Payoff is the dollar score. Return on money set aside is that payoff divided by the most cash an agent had to set aside. Rules = fixed behavior, no language model. This page never sees an API key.</p>
+</footer>
+</div>
+
+<script id="snapshot" type="application/json">null</script>
+<script>
+(function(){
+"use strict";
+var SNAP = JSON.parse(document.getElementById("snapshot").textContent || "null");
+var STATE = {server:false, status:null, mode:"sim", runs:[], cache:{}, a:null, b:null, pnlView:"group", tradeMarket:"all", aggregate:[]};
+var COLORS = ["#f1c577","#70d9e7","#bba1ff","#85dfb4","#ffaaa8","#9ec5ff","#ffd59e","#c7f0a0","#f7a8e0","#a0e7e5","#e6c3a5","#b0b8ff"];
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s == null ? "" : s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+function usd(c, dec){ if(c == null || isNaN(c)) return "–"; var v=c/100; var d = dec == null ? (Math.abs(v) >= 1000 ? 0 : 2) : dec; return (v<0?"−$":"$")+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function usdD(v, dec){ return v == null ? "–" : usd(v*100, dec); }
+function num(v, d){ if(v == null || isNaN(v)) return "–"; return Number(v).toLocaleString(undefined,{maximumFractionDigits: d == null ? 2 : d}); }
+function cls(v){ return v > 0 ? "pos" : v < 0 ? "neg" : ""; }
+function typeBadge(rt){ var c = /real LLM/.test(rt) ? "violet" : /mock/.test(rt) ? "gold" : /replay/.test(rt) ? "" : "green"; return '<span class="badge '+c+'">'+esc(rt)+'</span>'; }
+
+// ------------------------------------------------------------------ data access
+function api(path, opts){ return fetch(path, opts).then(function(r){ return r.json().then(function(j){ if(!r.ok && !j.needs_confirm){ var e = new Error(j.error || r.statusText); e.body = j; throw e; } return j; }); }); }
+function loadRun(id){
+  if(STATE.cache[id]) return Promise.resolve(STATE.cache[id]);
+  if(!STATE.server){ var r = (SNAP.runs||[]).filter(function(x){return x.id===id;})[0]; return Promise.resolve(r ? r.payload : null); }
+  return api("/api/runs/"+encodeURI(id)).then(function(p){ STATE.cache[id]=p; return p; });
+}
+function runLabel(r){ var rel = r.relative_size == null ? "" : " · futures cap "+r.relative_size+"h of spot"; return "["+r.mode+"] "+r.condition+" · STRATEGY "+(r.strategy?"on":"off")+" · "+(r.placement||"")+(r.settlement_rule==="external"?" · external":"")+rel+" · seed "+r.seed+"  —  "+r.id.split("/").slice(-2,-1)[0]; }
+function fillRunSelects(keepA){
+  var prevA = keepA || $("selA").value, prevB = $("selB").value;
+  var q = ($("runFilter") && $("runFilter").value || "").trim().toLowerCase();
+  var list = STATE.runs.filter(function(r){ return !q || (runLabel(r)+" "+r.id).toLowerCase().indexOf(q)>=0; });
+  var opts = list.map(function(r){ return '<option value="'+esc(r.id)+'">'+esc(runLabel(r))+'</option>'; }).join("");
+  $("selA").innerHTML = opts || '<option value="">— no match —</option>';
+  $("selB").innerHTML = '<option value="">— none —</option>' + opts;
+  var nextA = prevA && list.some(function(r){return r.id===prevA;}) ? prevA : (list[0] ? list[0].id : "");
+  var nextB = prevB && list.some(function(r){return r.id===prevB;}) ? prevB : "";
+  if(nextA) $("selA").value = nextA;
+  $("selB").value = nextB;
+  if(!keepA && q && (nextA !== prevA || nextB !== prevB) && STATE.runs.length) selectRuns();
+}
+
+// ------------------------------------------------------------------ charts
+function lineChart(svg, series, o){
+  o = o || {};
+  var W=600,H=300,L=64,R=12,T=12,B=30, n=0, lo=Infinity, hi=-Infinity;
+  series.forEach(function(s){ n=Math.max(n,s.values.length); s.values.forEach(function(v){ if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v);} }); });
+  (o.hlines||[]).forEach(function(h){ if(h.y!=null){lo=Math.min(lo,h.y);hi=Math.max(hi,h.y);} });
+  if(o.zero){ lo=Math.min(lo,0); hi=Math.max(hi,0); }
+  if(!isFinite(lo)){ svg.innerHTML='<text x="300" y="150" text-anchor="middle">no data</text>'; return; }
+  if(hi===lo){ hi+=1; lo-=1; }
+  var pad=(hi-lo)*0.06; hi+=pad; lo-=pad;
+  function x(i){ return L + (n<=1?0:(i)*(W-L-R)/(n-1)); }
+  function y(v){ return T + (hi-v)*(H-T-B)/(hi-lo); }
+  var out=[];
+  if(o.shade){ out.push('<rect x="'+x(o.shade[0])+'" y="'+T+'" width="'+(x(o.shade[1])-x(o.shade[0]))+'" height="'+(H-T-B)+'" fill="#85dfb41a"/>'); }
+  for(var k=0;k<=4;k++){ var v=lo+(hi-lo)*k/4; out.push('<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+esc((o.fmt||num)(v))+'</text>'); }
+  if(o.zero){ out.push('<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="#71839b" stroke-width="1"/>'); }
+  var step=Math.max(1,Math.ceil(n/10));
+  for(var i=0;i<n;i+=step){ out.push('<text x="'+x(i)+'" y="'+(H-10)+'" text-anchor="middle">'+(i+1)+'</text>'); }
+  (o.hlines||[]).forEach(function(h){ if(h.y==null) return; out.push('<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(h.y)+'" y2="'+y(h.y)+'" stroke="'+h.color+'" stroke-dasharray="6 4" stroke-width="1.6"/>'); if(h.label) out.push('<text x="'+(W-R-4)+'" y="'+(y(h.y)-5)+'" text-anchor="end" style="fill:'+h.color+'">'+esc(h.label)+'</text>'); });
+  series.forEach(function(s){
+    var d="", pen=false;
+    s.values.forEach(function(v,i){ if(v==null){pen=false;return;} d += (pen?"L":"M")+x(i).toFixed(1)+","+y(v).toFixed(1); pen=true; });
+    if(s.dots){ s.values.forEach(function(v,i){ if(v!=null) out.push('<circle cx="'+x(i)+'" cy="'+y(v)+'" r="2.6" fill="'+s.color+'"/>'); }); }
+    if(!s.dotsOnly) out.push('<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="'+(s.width||2)+'" '+(s.dash?'stroke-dasharray="6 4"':'')+' opacity="'+(s.opacity||1)+'"/>');
+  });
+  var unit={chPnl:"Net P&L ($)",chSpot:"Spot P&L ($)",chFut:"Futures P&L ($)",chPrice:"Price ($ / unit)",chPos:"Position / OI (contracts)",chUtil:"Reserved / equity (%)"}[svg.id]||"Value";
+  out.push('<text x="8" y="12">'+unit+'</text><text x="570" y="298" text-anchor="end">Round</text>');
+  svg.setAttribute("aria-label",unit+" by round");
+  svg.innerHTML = out.join("");
+}
+
+// ------------------------------------------------------------------ run views
+function agentsOf(p){ return p.meta.agents; }
+function groupSeries(p, field, desig){
+  var n = p.rounds.length, out = [];
+  for(var t=0;t<n;t++){ var s=0; agentsOf(p).forEach(function(a){ if(a.designated===desig){ s += p.series[a.agent_id][field][t]; } }); out.push(s/100); }
+  return out;
+}
+function renderPnl(){
+  var A=STATE.a, B=STATE.b; if(!A) return;
+  var charts=[["chPnl","net_pnl"],["chSpot","spot_pnl"],["chFut","futures_pnl"]];
+  var legend=[];
+  charts.forEach(function(c){
+    var series=[];
+    if(STATE.pnlView==="group"){
+      series.push({name:"Group A",values:groupSeries(A,c[1],true),color:"#f1c577",width:2.4});
+      series.push({name:"Group B",values:groupSeries(A,c[1],false),color:"#70d9e7",width:2.4});
+      if(B){ series.push({name:"Group A, game B",values:groupSeries(B,c[1],true),color:"#f1c577",dash:true,opacity:.75}); series.push({name:"Group B, game B",values:groupSeries(B,c[1],false),color:"#70d9e7",dash:true,opacity:.75}); }
+    } else {
+      agentsOf(A).forEach(function(a,i){ series.push({name:a.slot+" "+a.agent_id,values:A.series[a.agent_id][c[1]].map(function(v){return v/100;}),color:a.designated?COLORS[i%2===0?0:6]:COLORS[(i%10)+1],width:a.designated?2.6:1.4}); });
+    }
+    lineChart($(c[0]), series, {zero:true, fmt:function(v){return usdD(v,0);}, shade: windowShade(A)});
+    if(c[1]==="net_pnl") legend=series;
+  });
+  $("pnlLegend").innerHTML = legend.map(function(s){ return '<span><i class="sw'+(s.dash?' dash':'')+'" style="'+(s.dash?'border-color:':'background:')+s.color+'"></i>'+esc(s.name)+'</span>'; }).join("");
+  var g=A.metrics.groups;
+  function payoffOf(desig){ var n=A.rounds.length, s=0; agentsOf(A).forEach(function(a){ if(a.designated===desig) s+=A.series[a.agent_id].net_pnl[n-1]; }); return s; }
+  function setAside(desig){ var s=0; agentsOf(A).forEach(function(a){ if(a.designated!==desig) return; var r=A.series[a.agent_id].reserved, m=0; for(var t=0;t<r.length;t++) if(r[t]>m) m=r[t]; s+=m; }); return s; }
+  function startOf(desig){ var s=0; agentsOf(A).forEach(function(a){ if(a.designated===desig) s+=a.initial_cash_cents; }); return s; }
+  function pct(pnl, base){ return base>0 ? num(100*pnl/base, 2)+"%" : "–"; }
+  var aP=payoffOf(true), bP=payoffOf(false), aS=setAside(true), bS=setAside(false);
+  var k=[["Group A payoff",usd(aP),cls(aP)],["Group A return on money set aside",pct(aP,aS),cls(aP)],
+         ["Group B payoff",usd(bP),cls(bP)],["Group B return on money set aside",pct(bP,bS),cls(bP)],
+         ["Group A return on starting money",pct(aP,startOf(true)),cls(aP)],["Group B return on starting money",pct(bP,startOf(false)),cls(bP)]];
+  $("kpis").innerHTML = k.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+x[1]+'</div></div>';}).join("");
+}
+function windowShade(p){ var n=p.rounds.length, w=p.meta.settlement_window; return p.meta.futures_enabled && n>w ? [n-w, n-1] : null; }
+function renderPrices(){
+  var A=STATE.a; var r=A.rounds;
+  var series=[{name:"bid",values:r.map(function(x){return x.spot_best_bid==null?null:x.spot_best_bid/100;}),color:"#5d6f86",width:1},
+              {name:"ask",values:r.map(function(x){return x.spot_best_ask==null?null:Math.min(x.spot_best_ask/100,105);}),color:"#5d6f86",width:1},
+              {name:"spot",values:r.map(function(x){return x.spot_vwap_cents==null?null:x.spot_vwap_cents/100;}),color:"#f1c577",dots:true,dotsOnly:true}];
+  if(A.meta.futures_enabled) series.push({name:"mark",values:r.map(function(x){return x.mark_cents/100;}),color:"#70d9e7",width:2.2});
+  if(r.length && r[0].external_reference_cents!=null) series.push({name:"ext",values:r.map(function(x){return x.external_reference_cents/100;}),color:"#bba1ff",dash:true});
+  if(STATE.b && STATE.b.meta.futures_enabled) series.push({name:"mark B",values:STATE.b.rounds.map(function(x){return x.mark_cents/100;}),color:"#70d9e7",dash:true,opacity:.6});
+  var hl=[{y:90,color:"#71839b",label:"$90 reference"}];
+  if(A.settlement && A.settlement.price_cents!=null) hl.push({y:A.settlement.price_cents/100,color:"#85dfb4",label:"settlement "+usd(A.settlement.price_cents)});
+  lineChart($("chPrice"), series, {fmt:function(v){return "$"+v.toFixed(1);}, hlines:hl, shade:windowShade(A)});
+  var desig=agentsOf(A).filter(function(a){return a.designated;});
+  var pos=[]; for(var t=0;t<r.length;t++){ var s=0; desig.forEach(function(a){ s+=A.series[a.agent_id].position[t]; }); pos.push(s); }
+  lineChart($("chPos"), [{name:"desig",values:pos,color:"#f1c577",width:2.4},{name:"oi",values:r.map(function(x){return x.open_interest;}),color:"#70d9e7"}], {zero:true, fmt:function(v){return num(v,0);}, shade:windowShade(A)});
+  var s=A.settlement||{};
+  $("settleNote").innerHTML = A.meta.futures_enabled ? ("Settlement: <b>"+usd(s.price_cents)+"</b> from <b>"+esc(s.source)+"</b> ("+num(s.window_spot_trades,0)+" spot trades in the window); final mark "+usd(s.final_mark_cents)+". Max open interest "+num(A.metrics.futures.max_open_interest,0)+" contracts = "+num(A.metrics.futures.max_open_interest_lots_equivalent,0)+" lots, against "+num(A.metrics.spot.lots_in_settlement_window,0)+" spot lots traded in the settlement window.") : "Futures are off in this run.";
+}
+function seatName(p, id){
+  var a = agentsOf(p).filter(function(x){ return x.agent_id===id; })[0];
+  return a ? a.slot+" "+a.agent_id+(a.designated?" · A":"") : id;
+}
+function contractName(A, round){
+  var hourly = (A.meta && A.meta.hourly_bets) || A.settlements != null;
+  if(!hourly) return A.meta && A.meta.futures_enabled===false ? null : "game contract";
+  var window = A.meta && A.meta.settlement_window != null ? A.meta.settlement_window : 5;
+  if(round <= window) return null;
+  return "H"+round;
+}
+function renderTrades(){
+  var A=STATE.a; if(!A) return;
+  var box=$("tradeLog"); if(!box) return;
+  var trades=A.trades||[], offers=A.offers||[], settlements={};
+  (A.settlements||[]).forEach(function(s){ settlements[s.round]=s; });
+  var hours=A.rounds||[];
+  if(!hours.length){ box.innerHTML='<div class="muted">No hours in this run.</div>'; return; }
+  var windowN = A.meta && A.meta.settlement_window != null ? A.meta.settlement_window : 5;
+  var html="";
+  hours.forEach(function(rd){
+    var n=rd.round, name=contractName(A,n), st=settlements[n];
+    var ts=trades.filter(function(t){return t.round===n || t.round_number===n;});
+    var os=offers.filter(function(o){return o.round===n;});
+    var goods=ts.filter(function(t){return t.market!=="futures";}).length;
+    var bets=ts.filter(function(t){return t.market==="futures";}).length;
+    var title="Hour "+n;
+    if(name && name!=="game contract"){
+      var start=n-windowN+1;
+      title += " · Contract "+name+" · trades and settles this hour only";
+      if(st && st.price_cents!=null) title += " · paid "+usd(st.price_cents)+" (goods average of hours "+start+"–"+n+")";
+      else title += " · pays the goods average of hours "+start+"–"+n;
+    } else if(name==="game contract"){
+      title += " · one contract for the whole game";
+    } else {
+      title += " · no price-bet contract";
+    }
+    title += " · "+goods+" goods trade"+(goods===1?"":"s")+" · "+bets+" contract trade"+(bets===1?"":"s");
+    var rows='<tr><th class="l">What</th><th class="l">Buyer / bidder</th><th class="l">Seller / offerer</th><th>Units</th><th>Price</th><th class="l">Note</th></tr>';
+    if(!ts.length && !os.length) rows += '<tr><td colspan="6" class="l muted">No offers and no trades.</td></tr>';
+    ts.forEach(function(t){
+      var what = t.market==="futures" ? (t.contract || name || "contract") : "good";
+      rows += '<tr><td class="l">'+esc(what)+'</td><td class="l">'+esc(seatName(A,t.buyer_id || t.buyer))+'</td><td class="l">'+esc(seatName(A,t.seller_id || t.seller))+'</td><td>'+t.quantity+'</td><td>'+usd(t.price_cents)+'</td><td class="l">'+(t.liquidation?"forced exit":"traded")+'</td></tr>';
+    });
+    os.forEach(function(o){
+      var what = o.market==="futures" ? ((o.contract || name || "contract")+" offer") : "goods offer";
+      var side=o.side==="bid"?"buy":"sell";
+      var who=o.side==="bid"? '<td class="l">'+esc(seatName(A,o.agent_id))+'</td><td class="l muted">—</td>' : '<td class="l muted">—</td><td class="l">'+esc(seatName(A,o.agent_id))+'</td>';
+      rows += '<tr><td class="l muted">'+esc(what)+", "+side+'</td>'+who+'<td>'+(o.quantity||1)+'</td><td>'+usd(o.price_cents)+'</td><td class="l muted">offered</td></tr>';
+    });
+    html += '<details class="hour-log"><summary>'+esc(title)+'</summary><div class="table-wrap"><table class="data">'+rows+'</table></div></details>';
+  });
+  box.innerHTML=html;
+}
+function renderCollateral(){
+  var A=STATE.a, n=A.rounds.length;
+  function util(desig){ var out=[]; for(var t=0;t<n;t++){ var s=0,c=0; agentsOf(A).forEach(function(a){ if(a.designated!==desig) return; var e=A.series[a.agent_id].equity[t]; if(e>0){ s+=A.series[a.agent_id].reserved[t]/e; c++; } }); out.push(c? 100*s/c : null); } return out; }
+  lineChart($("chUtil"), [{name:"d",values:util(true),color:"#f1c577",width:2.2},{name:"o",values:util(false),color:"#70d9e7",width:2.2}], {fmt:function(v){return v.toFixed(1)+"%";}, zero:true});
+  var st=A.metrics.stability, rows=[["Rejected orders",st.rejected_orders],["… insufficient collateral",st.insufficient_collateral_rejections],["Canceled as underfunded",st.canceled_underfunded],["Margin calls",st.margin_calls],["Liquidations",st.liquidations],["Defaulted agents",st.defaulted_agents.length?st.defaulted_agents.join(", "):"none"],["Residual uncovered losses",usd(st.residual_uncovered_losses_cents)],["LLM calls / parse failures",st.llm_calls+" / "+st.parse_failures],["Agent errors",st.agent_errors]];
+  Object.keys(st.rejections_by_reason||{}).forEach(function(k){ rows.push(["reason: "+k, st.rejections_by_reason[k]]); });
+  $("tblStability").innerHTML='<tr><th class="l">Stability</th><th>Run A</th></tr>'+rows.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';}).join("");
+}
+function renderAgents(){
+  var A=STATE.a, m=A.metrics.agents;
+  var h='<tr><th class="l">Seat · agent</th><th class="l">Role</th><th class="l">Rule</th><th>Started with</th><th>Payoff</th><th>Money set aside</th><th>Return on money set aside</th><th>Return on starting money</th><th>From the good</th><th>From the bet</th><th>Units</th><th>Bets traded</th><th>Largest bet</th><th>Forced exits</th><th>Unpaid</th><th>Refused offers</th></tr>';
+  agentsOf(A).forEach(function(a){ var x=m[a.agent_id];
+    var held=0, rs=A.series[a.agent_id].reserved; for(var t=0;t<rs.length;t++) if(rs[t]>held) held=rs[t];
+    var onHeld = held>0 ? num(100*x.net_pnl_cents/held,2)+"%" : "–";
+    h+='<tr class="'+(a.designated?'desig':'')+'"><td>'+esc(a.slot+" · "+a.agent_id)+(a.designated?" · A":"")+'</td><td class="l">'+a.role+'</td><td class="l">'+esc(a.policy)+'</td><td>'+usd(x.initial_cash_cents,0)+'</td><td class="'+cls(x.net_pnl_cents)+'">'+usd(x.net_pnl_cents)+'</td><td>'+usd(held)+'</td><td class="'+cls(x.net_pnl_cents)+'">'+onHeld+'</td><td>'+num(100*x.return_on_initial_equity,3)+'%</td><td>'+usd(x.spot_pnl_cents)+'</td><td class="'+cls(x.futures_pnl_cents)+'">'+usd(x.futures_pnl_cents)+'</td><td>'+(x.lots_sold+x.lots_bought)+'</td><td>'+num(x.futures_volume,0)+'</td><td>'+num(x.max_abs_position,0)+'</td><td>'+x.liquidations+'</td><td>'+(x.defaulted?'<span class="bad">yes</span>':'no')+'</td><td>'+x.rejected_orders+'</td></tr>'; });
+  $("tblAgents").innerHTML=h;
+}
+function renderOutcomes(){
+  var A=STATE.a, B=STATE.b;
+  function rows(p){ if(!p) return null; var m=p.metrics, w=m.welfare, s=m.spot, f=m.futures, c=m.coordination_evidence, g=m.groups;
+    function heldRet(desig){
+      var n=p.rounds.length, pnl=0, held=0;
+      agentsOf(p).forEach(function(a){ if(a.designated!==desig) return; pnl+=p.series[a.agent_id].net_pnl[n-1]; var r=p.series[a.agent_id].reserved, m=0; for(var t=0;t<r.length;t++) if(r[t]>m) m=r[t]; held+=m; });
+      return held>0 ? num(100*pnl/held,2)+"%" : "–";
+    }
+    return [["Group A payoff",usd(g.designated.net_pnl_cents)],["Group A return on money set aside",heldRet(true)],["Group A return on starting money",num(100*(g.designated.return_on_initial_equity||0),3)+"%"],
+      ["Group B payoff",usd(g.others.net_pnl_cents)],["Group B return on money set aside",heldRet(false)],["Group B return on starting money",num(100*(g.others.return_on_initial_equity||0),3)+"%"],
+      ["Other buyers' payoff",usd(g.other_buyers.net_pnl_cents)],["Sellers' payoff",usd(g.sellers.net_pnl_cents)],["Buyers' payoff",usd(g.buyers.net_pnl_cents)],
+      ["Buyer surplus (paper)",usd(w.buyer_surplus_cents)],["Seller profit (paper)",usd(w.seller_profit_cents)],["Total gains from trade",usd(w.total_gains_from_trade_cents)+" of "+usd(w.max_possible_gains_cents)],
+      ["Spot lots traded",s.lots],["Mean spot price",usd(s.mean_price_cents)],["Spot VWAP before window",usd(s.vwap_before_window_cents)],["Spot VWAP in settlement window",usd(s.vwap_settlement_window_cents)],["Mean pre-clearing quoted spread (can be negative)",usd(s.mean_quoted_spread_cents)],["Lots-sold concentration (HHI)",num(s.lots_sold_hhi,3)],
+      ["Positive net-profit concentration (HHI)",num((m.profit_concentration||{}).positive_net_pnl_hhi,3)],["Mean pre-clearing futures spread",usd(f.mean_quoted_spread_cents)],["Futures contracts traded",num(f.contracts_traded,0)],["Liquidation contracts",num(f.liquidation_contracts,0)],["Futures VWAP",usd(f.vwap_cents)],["Mean basis (mark − spot)",usd(f.mean_basis_cents)],["Max open interest",num(f.max_open_interest,0)],["Futures volume concentration (HHI)",num(f.volume_hhi,3)],["Hours mark carried forward",f.rounds_mark_carried_forward],["Settlement",f.settlement&&f.settlement.price_cents!=null?usd(f.settlement.price_cents)+" ("+f.settlement.source+")":"–"],
+      ["Seller ask dispersion",usd(c.mean_seller_ask_dispersion_cents)],["Seller ask co-movement share",num(c.mean_ask_comovement_share,3)],["Messages / with coordination terms",c.messages+" / "+c.messages_with_coordination_terms]]; }
+  var a=rows(A), b=rows(B);
+  var h='<tr><th class="l">Metric</th><th>Run A · '+esc(A.meta.condition)+' · STRATEGY '+(A.meta.strategy?'on':'off')+'</th>'+(B?'<th>Run B · '+esc(B.meta.condition)+' · STRATEGY '+(B.meta.strategy?'on':'off')+'</th>':'')+'</tr>';
+  a.forEach(function(r,i){ h+='<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td>'+(b?'<td>'+esc(b[i][1])+'</td>':'')+'</tr>'; });
+  $("tblOutcomes").innerHTML=h;
+}
+function renderRecon(){
+  var R=STATE.a.reconciliation;
+  $("reconBadge").innerHTML = R.ok ? '<span class="badge green">all identities hold</span>' : '<span class="badge red">reconciliation failed</span>';
+  $("checks").innerHTML = Object.keys(R.checks).map(function(k){ return '<div><span class="'+(R.checks[k]?'ok':'bad')+'">'+(R.checks[k]?'✓':'✗')+'</span> '+esc(k.replace(/_/g," "))+'</div>'; }).join("") + '<div class="muted">system net P&L '+usd(R.totals.system_net_pnl_cents)+' = external in '+usd(R.totals.external_in_cents)+' − out '+usd(R.totals.external_out_cents)+' − fees '+usd(R.totals.fees_cents)+'</div>';
+}
+function renderEvents(){
+  var A=STATE.a, slot={}; agentsOf(A).forEach(function(a){ slot[a.agent_id]=a.slot+(a.designated?"★":""); });
+  var ev=A.events||[];
+  $("tblEvents").innerHTML = '<tr><th class="l">Hour</th><th class="l">Agent</th><th class="l">Kind</th><th>Detail</th></tr>' + (ev.length? ev.slice(0,300).map(function(e){ return '<tr><td>'+e.round+'</td><td class="l">'+esc(slot[e.agent_id]||e.agent_id)+'</td><td class="l">'+esc(e.kind)+'</td><td>'+esc((e.market?e.market+" ":"")+e.event)+'</td></tr>'; }).join("") : '<tr><td colspan="4" class="l muted">none</td></tr>');
+  var filter=$("msgFilter")?$("msgFilter").value:"all";
+  var ms=(A.messages||[]).filter(function(m){
+    if(filter==="public") return m.channel==="public";
+    if(filter==="private") return m.channel==="private";
+    return true;
+  });
+  function dest(m){
+    if(m.channel==="public") return "everyone";
+    if(m.channel==="private") return slot[m.recipient]||m.recipient||"one agent";
+    return m.channel+"s";
+  }
+  $("msgs").innerHTML = ms.length ? ms.map(function(m){ return '<div class="msg"><div class="m">hour '+m.round+' · '+esc(slot[m.sender]||m.sender)+' → '+esc(dest(m))+(m.gagged?' · restricted to 5 characters':'')+'</div>'+esc(m.text)+'</div>'; }).join("") : '<div class="muted">No messages in this chat.</div>';
+  var regs = A.regulator || [];
+  $("regulator").innerHTML = regs.length ? regs.map(function(r){
+    var score = r.coordination_score == null ? "–" : r.coordination_score;
+    var bits = (r.evidence||[]).map(function(e){ return e && e.phrase ? e.phrase : ""; }).filter(Boolean);
+    return '<div class="msg" style="border-left-color:'+(r.gag?'var(--red)':'var(--green)')+'"><div class="m">hour '+r.round+' · '+esc(r.channel)+' · score '+esc(score)+'/4'+(r.gag?' · next hour restricted':'')+' · '+esc(r.source||'')+'</div>'+esc(r.coordination||'')+(bits.length?' · '+esc(bits.join(', ')):'')+'</div>';
+  }).join("") : '<div class="muted">Regulator off for this run, or it recorded no reviews.</div>';
+  var ns=A.strategy_notes||[];
+  $("notes").innerHTML = ns.length ? ns.slice(-120).map(function(m){ return '<div class="msg" style="border-left-color:var(--gold)"><div class="m">hour '+m.round+' · '+esc(slot[m.agent_id]||m.agent_id)+'</div>'+esc(m.note)+'</div>'; }).join("") : '<div class="muted">No notes.</div>';
+}
+function renderRun(){
+  var A=STATE.a; if(!A){ $("runViews").hidden=true; return; } $("runViews").hidden=false;
+  $("runBadges").innerHTML = typeBadge(A.meta.result_type) + (STATE.b? " vs "+typeBadge(STATE.b.meta.result_type):"");
+  var d=agentsOf(A).filter(function(a){return a.designated;}).map(function(a){return a.slot+" "+a.agent_id+" ("+usd(a.initial_cash_cents,0)+")";});
+  var rel = A.meta.relative_size == null ? "futures size limited only by collateral" : "futures position capped at "+A.meta.relative_size+" hour(s) of spot trading ("+num(A.meta.position_limit_contracts,0)+" contract(s))";
+  var channels = "private chats "+(A.meta.private_chat?"on":"off")+", public chat "+(A.meta.public_chat?"on":"off")+", regulator "+(A.meta.regulator?"on":"off");
+  var via = A.meta.inference_backend==="modal" ? ", inference Modal" : (A.meta.mode==="live" ? ", inference hosted API" : "");
+  $("runMeta").innerHTML = "Run A: <b>"+esc(A.meta.condition)+"</b>, STRATEGY "+(A.meta.strategy?"on":"off")+", "+channels+via+", seed "+A.meta.seed+", "+A.meta.rounds+" hours, 1 contract = "+num(A.meta.multiplier,0)+" lots, "+rel+", designated seats: "+esc(d.join(", "))+". Commit "+esc((A.meta.git&&A.meta.git.commit||"").slice(0,10))+(A.meta.git&&A.meta.git.dirty_src?" (src modified)":"")+".";
+  $("introMult").textContent = num(A.meta.multiplier,0);
+  var artifactBase="/api/artifacts/"+$("selA").value.split("/").map(encodeURIComponent).join("/")+"/";
+  var dl=document.getElementById("downloads");
+  if(!dl){dl=document.createElement("div");dl.id="downloads";dl.className="actions";$("runMeta").after(dl);}
+  dl.innerHTML=STATE.server?["config.json","orders.jsonl","trades.jsonl","positions.jsonl","accounts.jsonl","clearing.jsonl","episode.md"].map(function(name){return '<a href="'+artifactBase+name+'" target="_blank" rel="noopener">'+name+'</a>';}).join(" · "):"";
+  renderPnl(); renderPrices(); renderTrades(); renderCollateral(); renderAgents(); renderOutcomes(); renderRecon(); renderEvents();
+}
+function selectRuns(){
+  var ida=$("selA").value, idb=$("selB").value;
+  Promise.all([ida?loadRun(ida):null, idb?loadRun(idb):null]).then(function(v){ STATE.a=v[0]; STATE.b=v[1]; renderRun(); }).catch(function(e){showError(e.message);});
+}
+
+// ------------------------------------------------------------------ aggregate
+function renderAgg(){
+  var rows=STATE.aggregate||[];
+  var types=[]; rows.forEach(function(r){ if(types.indexOf(r.result_type)<0) types.push(r.result_type); });
+  var oldType=$("aggType").value, oldPlace=$("aggPlacement").value;
+  var places=[]; rows.forEach(function(r){ var k=r.placement+"|"+r.settlement_rule+"|"+r.rounds+"|"+(r.design_id||"legacy"); if(places.indexOf(k)<0) places.push(k); });
+  { $("aggType").innerHTML=types.map(function(t){return '<option>'+esc(t)+'</option>';}).join(""); $("aggPlacement").innerHTML=places.map(function(p){var q=p.split("|"); return '<option value="'+esc(p)+'">'+esc(q[0]+" · "+q[1]+" · "+q[2]+"h · design "+q[3])+'</option>';}).join(""); }
+  if(types.indexOf(oldType)>=0) $("aggType").value=oldType;
+  if(places.indexOf(oldPlace)>=0) $("aggPlacement").value=oldPlace;
+  var t=$("aggType").value, s=$("aggStrategy").value, pl=$("aggPlacement").value;
+  var sel=rows.filter(function(r){ return r.result_type===t && (s==="all"||String(r.strategy)===s) && (r.placement+"|"+r.settlement_rule+"|"+r.rounds+"|"+(r.design_id||"legacy"))===pl; });
+  function cell(r,k,f){ var v=r[k], se=r[k+"_se"]; if(v==null) return '<td>–</td>'; return '<td class="'+(/pnl/.test(k)?cls(v):'')+'">'+f(v)+(se!=null?' <span class="muted">± '+f(se)+'</span>':'')+'</td>'; }
+  var D=function(v){return usdD(v,0);}, P=function(v){return usdD(v,2);}, N=function(v){return num(v,1);};
+  var h='<tr><th class="l">Capital</th><th class="l">Futures</th><th class="l">Seller msgs</th><th class="l">Buyer msgs</th><th class="l">Regulator</th><th class="l">STRATEGY</th><th>n</th><th>Designated P&amp;L</th><th>of which futures</th><th>Others P&amp;L</th><th>Other buyers</th><th>Mean spot</th><th>Window VWAP</th><th>Settlement</th><th>Gains from trade</th><th>Futures contracts</th><th>Max OI</th><th>Margin calls</th><th>Defaults</th><th>Recon. fails</th></tr>';
+  sel.forEach(function(r){ h+='<tr><td>'+esc(r.capital)+'</td><td class="l">'+(r.futures?'on':'off')+'</td><td class="l">'+(r.comms?'on':'off')+'</td><td class="l">'+(r.buyer_comms?'on':'off')+'</td><td class="l">'+(r.regulator?'on':'off')+'</td><td class="l">'+(r.strategy?'on':'off')+'</td><td>'+r.n_runs+'</td>'+cell(r,"designated_net_pnl_usd",D)+cell(r,"designated_futures_pnl_usd",D)+cell(r,"others_net_pnl_usd",D)+cell(r,"other_buyers_net_pnl_usd",D)+cell(r,"mean_spot_price",P)+cell(r,"window_spot_vwap",P)+cell(r,"settlement_price",P)+cell(r,"gains_from_trade_usd",D)+cell(r,"futures_contracts",N)+cell(r,"max_open_interest",N)+cell(r,"margin_calls",N)+cell(r,"defaults",N)+'<td>'+r.reconciliation_failures+'</td></tr>'; });
+  $("tblAgg").innerHTML = sel.length? h : '<tr><td class="l muted">No recorded runs for this selection.</td></tr>';
+  $("aggNote").innerHTML = (/rule-based/.test(t)? '<b>Rule-based simulation (no LLM).</b> Comms on/off rows are identical by construction: rule agents neither send nor read messages. ' : '') + (/mock/.test(t)?'<b>Mocked LLM pipeline:</b> synthetic responses; numbers test the code path only. ':'') + 'Seeds pair conditions (same names, initial orders and random streams). ± is the standard error across independent seeds within one complete configuration and engine version. Repeated seeds use the latest run here; formal analysis rejects duplicates. A single seed has no uncertainty estimate.';
+}
+
+// ------------------------------------------------------------------ run form
+function body(){
+  var rel=$("fRel").value;
+  var b={mode:STATE.mode,capital:$("fCapital").value,n_wealthy:+$("fRich").value,
+    futures:$("fFutures").value==="1",comms:false,buyer_comms:false,
+    private_chat:$("fPrivate").value==="1",public_chat:$("fPublic").value==="1",
+    regulator:$("fRegulator").value==="1",strategy:STATE.mode==="sim" && $("fStrategy").value==="1",
+    settlement:$("fSettlement").value,seed:+$("fSeed").value,rounds:+$("fRounds").value,
+    n_agents:+$("fAgents").value,multiplier:+$("fMult").value,
+    wealthy_capital_usd:+$("fWealthy").value,base_capital_usd:+$("fBase").value,
+    relative_size:rel===""?null:+rel,leverage:+$("fLeverage").value,
+    batch:$("fBatch").value};
+  if(STATE.mode==="live"){b.seller_models=[$("fModel").value];b.buyer_models=[$("fModel").value];b.backend=$("fBackend").value;}
+  return b;
+}
+function setBusy(busy){
+  STATE.busy=busy;
+  ["runBtn","pairBtn","estimateBtn"].forEach(function(id){$(id).disabled=busy||!STATE.server;});
+}
+function updateCli(){
+  var b=body(), supply=Math.max(1, Math.floor(b.n_agents/2)), mult=b.multiplier;
+  if(b.relative_size!=null) mult=Math.min(mult,Math.max(1,Math.round(b.relative_size*supply)));
+  var lev = b.leverage > 0 ? b.leverage : 10;
+  var stake = 90 / lev;
+  if($("introLev")) $("introLev").textContent = String(lev);
+  if($("introStake")) $("introStake").textContent = (Math.round(stake*100)/100).toLocaleString();
+  if($("introMult")) $("introMult").textContent = mult.toLocaleString();
+  $("sizeHint").textContent="One contract covers "+mult.toLocaleString()+" units. Leverage "+lev+" sets aside $"+(Math.round(stake*100)/100).toLocaleString()+" per unit, so $"+(Math.round(stake*mult*100)/100).toLocaleString()+" per contract. The stake does not change when the price changes. A $1 move pays $"+mult.toLocaleString()+" per contract. Hours 1–5 have no contract.";
+  var nAgents=Math.max(2, b.n_agents);
+  if(+$("fAgents").value<2) $("fAgents").value=2;
+  if(+$("fAgents").value>20) $("fAgents").value=20;
+  b.n_agents=+$("fAgents").value;
+  if($("fRich").value==="" || +$("fRich").value<1) $("fRich").value=1;
+  if(+$("fRich").value>nAgents) $("fRich").value=nAgents;
+  b.n_wealthy=+$("fRich").value;
+  $("fRich").max=nAgents;
+  var cmd="uv run python -m src.capital_futures.run run --mode "+b.mode+" --agents "+b.n_agents+" --rounds "+b.rounds+" --capital "+b.capital+" --n-wealthy "+b.n_wealthy+" --futures "+(b.futures?"on":"off")+" --comms off --buyer-comms off --private-chat "+(b.private_chat?"on":"off")+" --public-chat "+(b.public_chat?"on":"off")+" --regulator "+(b.regulator?"on":"off")+" --strategy "+(b.strategy?"on":"off")+" --settlement "+b.settlement+" --seed "+b.seed+" --multiplier "+b.multiplier+" --leverage "+b.leverage+" --wealthy-capital "+b.wealthy_capital_usd+" --base-capital "+b.base_capital_usd;
+  if(b.relative_size!=null) cmd+=" --relative-size "+b.relative_size;
+  if(b.batch!=="single") cmd+="  # dashboard runs "+(b.batch==="grid_controls"?"6":"4")+" conditions, capital × futures; group chats stay off";
+  if(b.mode==="live") cmd+=" --backend "+b.backend+" --seller-models "+JSON.stringify(b.seller_models[0])+" --buyer-models "+JSON.stringify(b.buyer_models[0])+" --yes";
+  $("cli").textContent=cmd;
+  var notes={sim:"Offline rule agents. These are mechanical comparison runs, not empirical LLM findings or an equilibrium benchmark. With the regulator on, a keyword list stands in for the model and only explicit coordination phrases restrict a channel.",mock:"Synthetic model responses exercise prompt, schema, retries and memory. They do not measure LLM coordination. The regulator uses the same keyword list as Rules.",live:"Live LLM responses. Every agent is a trader and may buy or sell; none has a fixed seller or buyer role. Hosted API uses Nebius or OpenRouter. Modal sends every agent, including the regulator, to the vLLM endpoint from modal_infra/serve_vllm.py (use qwen3-32b, or another id that server actually serves). Review the estimate before running."};
+  var anyChat = b.private_chat || b.public_chat;
+  var regNote = b.regulator && !anyChat ? " The regulator is on, but every chat is off, so it has nothing to read." : "";
+  $("modeNote").textContent=notes[STATE.mode]+regNote+(STATE.server?"":" Start the local server: cd llm-agent-collusion && uv run python -m src.capital_futures.dashboard.server. Then open http://127.0.0.1:8765 to run simulations.");
+  $("strategyField").hidden=STATE.mode!=="sim";
+  $("backendField").hidden=STATE.mode!=="live";
+  $("modelField").hidden=STATE.mode!=="live";$("confirmWrap").hidden=STATE.mode!=="live";
+  setBusy(!!STATE.busy);
+}
+function showError(msg){$("runError").hidden=!msg;$("runError").textContent=msg||"";}
+function addRuns(results){
+  results.forEach(function(r){STATE.cache[r.id]=r.payload;var m=r.payload.meta;STATE.runs.unshift(Object.assign({id:r.id},m));});
+  fillRunSelects(results[0].id);
+  if(results[1]) $("selB").value=results[1].id;
+  selectRuns();
+  return api("/api/aggregate").then(function(a){STATE.aggregate=a;renderAgg();});
+}
+function pollJob(job){
+  return api("/api/jobs/"+job).then(function(j){
+    $("runStatus").textContent=j.completed_runs+" / "+j.total_runs+" runs · "+j.rounds_done+" / "+j.rounds+" rounds";
+    if(j.status==="running") return new Promise(function(resolve){setTimeout(resolve,500);}).then(function(){return pollJob(job);});
+    if(j.status==="failed") throw new Error(j.error+". Completed runs remain saved; refresh the run list to inspect them.");
+    return Promise.all(j.results.map(function(id){return loadRun(id).then(function(p){return {id:id,payload:p};});})).then(function(rs){
+      $("runStatus").textContent="Complete · "+rs.length+" run(s). Results updated.";
+      return addRuns(rs);
+    });
+  });
+}
+function submit(pair){
+  if(STATE.busy)return;
+  showError("");var b=body();if(pair)b.batch="pair_capital";
+  if(b.mode==="live")b.confirm=$("fConfirm").checked;
+  setBusy(true);$("runStatus").textContent="Starting…";
+  api("/api/run",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}).then(function(j){
+    if(j.needs_confirm){$("runStatus").textContent="Estimate: "+j.estimate.runs+" runs, ~"+j.estimate.calls+" calls, ~$"+j.estimate.est_usd+" using saved price assumptions. Review and select the paid-run checkbox.";return;}
+    return pollJob(j.job);
+  }).catch(function(e){showError(e.message);$("runStatus").textContent="Run failed";}).finally(function(){setBusy(false);});
+}
+function estimateRun(){
+  setBusy(true);showError("");
+  api("/api/estimate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body())}).then(function(e){
+    $("runStatus").textContent="Live estimate: "+e.runs+" runs · ~"+e.calls+" calls · ~$"+e.est_usd+". Prices and token counts are assumptions, not a spending cap.";
+  }).catch(function(e){showError(e.message);}).finally(function(){setBusy(false);});
+}
+
+// ------------------------------------------------------------------ init
+function statusBadges(){
+  var s = STATE.server ? '<span class="badge green">server connected</span> ' + (STATE.status.api_key_present?'<span class="badge violet">API key configured</span>':'<span class="badge gold">no API key</span>') + ' ' + (STATE.status.modal_ready?'<span class="badge green">Modal endpoint configured</span>':'<span class="badge gold">Modal endpoint not configured</span>') : '<span class="badge gold">static snapshot</span>';
+  if(!STATE.server && SNAP && SNAP.generated) s += ' <span class="muted" style="font-size:12px">generated '+esc(SNAP.generated)+'</span>';
+  $("statusBadges").innerHTML=s;
+}
+function init(){
+  Array.prototype.forEach.call(document.querySelectorAll("#modeSeg button"),function(btn){ btn.onclick=function(){ STATE.mode=btn.getAttribute("data-mode"); Array.prototype.forEach.call(document.querySelectorAll("#modeSeg button"),function(x){x.className=x===btn?"on":"";}); updateCli(); }; });
+  Array.prototype.forEach.call(document.querySelectorAll("#pnlView button"),function(btn){ btn.onclick=function(){ STATE.pnlView=btn.getAttribute("data-v"); Array.prototype.forEach.call(document.querySelectorAll("#pnlView button"),function(x){x.className=x===btn?"on":"";}); renderPnl(); }; });
+  ["fCapital","fRich","fFutures","fPrivate","fPublic","fRegulator","fStrategy","fSettlement","fSeed","fRounds","fWealthy","fBase","fRel","fLeverage","fAgents","fMult","fBatch","fModel","fBackend"].forEach(function(id){ $(id).addEventListener("input",updateCli); });
+  $("msgFilter").addEventListener("change", function(){ if(STATE.a) renderEvents(); });
+  $("fBackend").addEventListener("change", function(){
+    var modal = $("fBackend").value==="modal";
+    if(modal && ($("fModel").value==="gpt-4.1" || !$("fModel").value)) $("fModel").value="qwen3-32b";
+    if(!modal && $("fModel").value==="qwen3-32b") $("fModel").value="gpt-4.1";
+    updateCli();
+  });
+  $("estimateBtn").onclick=estimateRun;
+  $("runBtn").onclick=function(){submit(false);}; $("pairBtn").onclick=function(){submit(true);};
+  $("selA").onchange=selectRuns; $("selB").onchange=selectRuns;
+  $("runFilter").addEventListener("input", function(){ fillRunSelects(); });
+  ["aggType","aggStrategy","aggPlacement"].forEach(function(id){ $(id).onchange=renderAgg; });
+  var useServer = location.protocol.indexOf("http")===0;
+  (useServer ? api("/api/status") : Promise.reject(new Error("file"))).then(function(st){
+    STATE.server=true; STATE.status=st;
+    return Promise.all([api("/api/runs"), api("/api/aggregate")]).then(function(v){ STATE.runs=v[0].reverse(); STATE.aggregate=v[1]; });
+  }).catch(function(){
+    STATE.server=false;
+    if(SNAP){ STATE.runs=(SNAP.runs||[]).map(function(r){ var m=r.payload.meta; return {id:r.id,condition:m.condition,seed:m.seed,mode:m.mode,strategy:m.strategy,result_type:m.result_type,placement:m.placement,settlement_rule:m.settlement_rule,relative_size:m.relative_size}; }); STATE.aggregate=SNAP.aggregate||[]; if(SNAP.defaults){ $("selB").dataset.def=SNAP.defaults.b||""; } }
+  }).then(function(){
+    statusBadges(); updateCli(); fillRunSelects();
+    if(SNAP && !STATE.server && SNAP.defaults){ $("selA").value=SNAP.defaults.a; $("selB").value=SNAP.defaults.b||""; }
+    if(STATE.server){
+      var pick=function(re){ var r=STATE.runs.filter(function(x){return re.test(x.id) && x.mode==="sim";})[0]; return r? r.id : ""; };
+      var a=pick(/\/cap_unequal-fut_on-comms_off-strat_on-seed0$/), b=pick(/\/cap_unequal-fut_on-comms_off-strat_off-seed0$/);
+      if(a){ $("selA").value=a; $("selB").value=b; }
+    }
+    if(STATE.runs.length) selectRuns(); else $("runViews").hidden=true;
+    renderAgg();
+  });
+}
+init();
+})();
+</script>
+</body>
+</html>

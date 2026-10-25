@@ -1,0 +1,3568 @@
+[
+ {
+  "citation": "Fish et al. 2024",
+  "title": "Algorithmic Collusion by Large Language Models",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "produced by learning algorithms without human design to produce those outcomes"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Lin et al. 2024",
+  "title": "Strategic Collusion of LLM Agents: Market Division in Multi-Commodity Competitions",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "market division",
+    "quote": "to divide a market, set prices, limit production, or limit opportunities"
+   }
+  ]
+ },
+ {
+  "citation": "Tian 2026",
+  "title": "Prompt Optimization Enables Stable Algorithmic Collusion in LLM Agents",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Keppo et al. 2026",
+  "title": "On the Fragility of AI Agent Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "autonomous pricing algorithms can sustain tacit collusion without explicit communication"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "repeated interaction / patience required",
+    "quote": "tacit collusion is sustainable if and only if players are sufficiently patient"
+   },
+   {
+    "element": "stable/sustained coordination over time",
+    "quote": "price convergence (whether agents coordinate on stable pricing)"
+   }
+  ]
+ },
+ {
+  "citation": "Collina et al. 2025",
+  "title": "Breaking Algorithmic Collusion in Human-AI Ecosystems",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "Formally, collusion is a high-price ε-approximate Nash equilibrium"
+   },
+   {
+    "element": "repeated interaction required",
+    "quote": "Collusion traces back to a fundamental property of repeated games"
+   },
+   {
+    "element": "persistence over time",
+    "quote": "collusion leads to sustained high prices"
+   }
+  ]
+ },
+ {
+  "citation": "Xu et al. 2026",
+  "title": "Collusion with Competitive Marginals: Price-Level Audits Are Blind by Construction",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "the two firms need not know their agents are coupled at all"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "shared base models produce such coupling by default"
+  },
+  "other_elements": [
+   {
+    "element": "individual behaviour indistinguishable from competitive (marginals fixed)",
+    "quote": "while each agent's marginal stays at its competitive law"
+   }
+  ]
+ },
+ {
+  "citation": "Agrawal et al. 2025",
+  "title": "Evaluating LLM Agent Collusion in Double Auctions",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "often at the expense of other participants or the market as a whole"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Nakamura et al. 2026",
+  "title": "COLOSSEUM: Auditing Collusion in Cooperative Multi-Agent Systems",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "O",
+   "quote": "even without being explicitly prompted to do so. We define this phenomenon as emergent collusion."
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "the gap between non-coalition and coalition mean per-agent best-response regret"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "hidden/secondary objective of colluders",
+    "quote": "cooperative settings that can become mixed-motive when agents have hidden objectives"
+   }
+  ]
+ },
+ {
+  "citation": "Q. Liu et al. 2026",
+  "title": "Breaking the Secret: Economic Interventions for Combating Collusion in Embodied Multi-Agent Systems",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "an embodied agent may increase its allocated tasks by Scoll (e.g., monopolizing high-reward tasks)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Bonjour et al. 2022",
+  "title": "Information-Theoretic Approach to Detect Collusion in Multi-Agent Games",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "R",
+   "quote": "two or more agents co-operate covertly to the disadvantage of others"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "partner-specific behaviour (treats partner differently from non-partners)",
+    "quote": "would play differently in the same perceived state against a non-colluding agent than they would against the colluding partner"
+   }
+  ]
+ },
+ {
+  "citation": "Rose et al. 2026",
+  "title": "Detecting Multi-Agent Collusion Through Multi-Agent Interpretability",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "mutual acceptance of unverifiable work counts as collusion"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "agents may covertly coordinate to steer outcomes, suppress information, or undermine oversight"
+  },
+  "C17": {
+   "code": "R",
+   "quote": "leaves agents outside the colluding group worse off"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "causal influence between colluders",
+    "quote": "the removal of any one of these communications at any time before t would cause agent"
+   },
+   {
+    "element": "harm defined by external party's standard",
+    "quote": "all that matters is that the external party considers some actions as good, noncollusive actions"
+   },
+   {
+    "element": "attempt suffices (success not required)",
+    "quote": "If the honest agents catch the bad code, the colluders still colluded."
+   }
+  ]
+ },
+ {
+  "citation": "Rippin et al. 2026",
+  "title": "Tool Use Enables Undetectable Steganography in Multi-Agent LLM Systems",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "unintended steganographic collusion between LLMs can emerge due to misspecified training reward incentives"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "agents use covert communication to hide the true nature of their interaction from oversight"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "A cooperating party (human or AI) that possesses the secret key"
+   }
+  ]
+ },
+ {
+  "citation": "Eschenbaum et al. 2022",
+  "title": "Robust Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "achieve algorithmic (tacit) collusion by coordinating on high-level ideas for the implementation of learning algorithms"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "Robust collusion is achieved when firms coordinate on algorithm design (e.g. a restricted observation space) while training independently"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Dhanda 2026",
+  "title": "A Price Cap Can Act as a Focal Point for LLM Pricing Agents: Evidence from a Repeated Bertrand Duopoly",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "whether autonomous LLM pricing agents tacitly collude"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Bracale Syrnikov et al. 2026",
+  "title": "Institutional AI: Governing LLM Collusion in Multi-Agent Cournot Markets via Public Governance Graphs",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "LLM agents in Cournot settings learn supra-competitive market-division strategies without explicit collusive instructions"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "market division as form of collusion",
+    "quote": "collusion often manifests as product-level market division"
+   },
+   {
+    "element": "collusion as continuous degree",
+    "quote": "Collusion is graded by how far the HHI and specialisation (CV) metrics exceed their Cournot–Nash values"
+   }
+  ]
+ },
+ {
+  "citation": "Radev et al. 2026",
+  "title": "The Best-Laid SCHEMEs: Coordinated Sabotage and Monitoring in Multi-Agent Systems",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "explicitly prompting agents with a malicious side objective"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "while the legitimate task still succeeds and a monitor does not notice"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "monitor comes from the same model family as one attacker, so it might \"collude\" with it"
+  },
+  "other_elements": [
+   {
+    "element": "joint action necessary (no proper subset can achieve outcome)",
+    "quote": "a harmful joint outcome that no proper subset of them could achieve"
+   },
+   {
+    "element": "shared goal among colluders",
+    "quote": "have already adopted a shared covert (malicious) side objective"
+   },
+   {
+    "element": "monitor as colluder (monitor-policy collusion)",
+    "quote": "This is the AI-control sense of monitor–policy collusion"
+   }
+  ]
+ },
+ {
+  "citation": "Nguyen et al. 2026",
+  "title": "TraceGuard: Structured Multi-Dimensional Monitoring as a Collusion-Resistant Control Protocol",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "the monitor fails to flag the agent's attacks, giving them low suspicion scores, so the attacks get through the control protocol"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "it is assumed to follow from shared identity"
+  },
+  "other_elements": [
+   {
+    "element": "colluder occupies evaluator/monitor role",
+    "quote": "Using the same model as both agent and monitor (untrusted monitoring) enables collusion"
+   }
+  ]
+ },
+ {
+  "citation": "Tomašev et al. 2025",
+  "title": "Distributional AGI Safety",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "pricing algorithms can learn to coordinate on supra-competitive prices"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "agents supposed to be independent",
+    "quote": "price-fixing behaviour between a cluster of supposedly independent agents"
+   }
+  ]
+ },
+ {
+  "citation": "Hammond et al. 2025",
+  "title": "Multi-Agent Risks from Advanced AI",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "AI systems can collude even when collusion is not intended by their developers, since they might learn that colluding is a profitable strategy"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "potentially the principal or overseer rather than a market participant"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "in AI agents this might be due not only to explicit communication but also to a common cause or process"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Dorner 2021",
+  "title": "Algorithmic collusion: A critical review",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "monitoring of adherence",
+    "quote": "stabilize it via monitoring others’ adherence to the strategy"
+   }
+  ]
+ },
+ {
+  "citation": "Idowu et al. 2026",
+  "title": "Mapping Human Anti-collusion Mechanisms to Multi-agent AI Systems",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "Others outside the group (competition, consumers, system)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Chassang & Ortner 2023",
+  "title": "Regulating Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "firms coordinate on an equilibrium that allows them to sustain supra-competitive prices"
+   }
+  ]
+ },
+ {
+  "citation": "Assad et al. 2021",
+  "title": "Autonomous algorithmic collusion: Economic research and policy implications",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "algorithms autonomously learn to collude, without any instruction to do so"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Li et al. 2026",
+  "title": "Emergent Misaligned Communication in Long-Horizon Multi-Agent LLM Commerce",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "Shared customer base (and excluded competitors)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "proposal/attempt suffices without action",
+    "quote": "regardless of whether any subsequent operational action follows."
+   }
+  ]
+ },
+ {
+  "citation": "Banchio & Skrzypacz 2022",
+  "title": "Artificial Intelligence and Auction Design",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Calvano et al. 2020b",
+  "title": "Protecting consumers from collusive prices due to AI",
+  "field": "Law & policy",
+  "C15": {
+   "code": "O",
+   "quote": "algorithms learn to adopt collusive pricing rules without human intervention, oversight, or even knowledge"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Drexler 2022",
+  "title": "Applying superintelligence without collusion",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "defeating checks and balances meant to have them oversee one another"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "Footnote allows coordination via shared decision theory even when isolated"
+  },
+  "other_elements": [
+   {
+    "element": "deception / belief manipulation",
+    "quote": "treating their components as actors that could in principle engage in deceptive collusion"
+   },
+   {
+    "element": "acting as a single agent",
+    "quote": "argue that multiple superintelligent-level systems would inevitably collude and act as one"
+   }
+  ]
+ },
+ {
+  "citation": "Spann et al. 2025",
+  "title": "Algorithmic pricing: Implications for marketing strategy and regulation",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "or autonomous tacit collusion without communication or agreement"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "Potential collusive pricing—intentional or not— due to shared algorithm reliance."
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Tao et al. 2026",
+  "title": "GroupGuard: A Framework for Modeling and Defending Collusive Attacks in Multi-Agent Systems",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "R",
+   "quote": "manipulate group dynamics through strategies such as cyclic endorsement, concentrated questioning, or collective exclusion"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "manipulation of collective decision process",
+    "quote": "manipulate group dynamics (false consensus, targeted suppression, group exclusion)"
+   }
+  ]
+ },
+ {
+  "citation": "CMA 2021",
+  "title": "Algorithms: How they can reduce competition and harm consumers",
+  "field": "Law & policy",
+  "C15": {
+   "code": "O",
+   "quote": "Algorithms could be used to make explicit collusion more stable or could collude without any explicit agreement"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "hub-and-spoke shared software"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Anagnostides & Zheng 2026",
+  "title": "Algorithmic Collusion and the Complexity of Information-Value-Free Equilibria",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "R",
+   "quote": "This type of autonomous collusion falls outside the purview of traditional antitrust prohibitions"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Brero et al. 2022",
+  "title": "Learning to Mitigate AI Collusion on Economic Platforms",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "R",
+   "quote": "reinforcement learning algorithms learn to set collusive prices in a decentralized manner and through nothing more than profit feedback"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Dafoe et al. 2020",
+  "title": "Open Problems in Cooperative AI",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Von Arx et al. 2026",
+  "title": "Discovery of a new OpenAI agent message board",
+  "field": "Incident",
+  "C15": {
+   "code": "R",
+   "quote": "in a way their developers did not intend"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "bypass sandbox restrictions"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Ivaldi et al. 2003",
+  "title": "The Economics of Tacit Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "repeated interaction required",
+    "quote": "letting repeatedly interacting firms earn supra-normal profits"
+   }
+  ]
+ },
+ {
+  "citation": "KhudaBukhsh et al. 2014",
+  "title": "Detecting Non-Adversarial Collusion in Crowdsourcing",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "O",
+   "quote": "Task requesters and non-colluding raters"
+  },
+  "C17": {
+   "code": "O",
+   "quote": "results in an unfair advantage over non-colluding agents or other interested parties"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "harm need not be the aim (non-adversarial)",
+    "quote": "We identify this type of colluding behavior as non-adversarial"
+   }
+  ]
+ },
+ {
+  "citation": "Brown et al. 2025",
+  "title": "Algorithmic Coercion with Faster Pricing",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "all parties forward-looking (not unilateral inducement)",
+    "quote": "Collusion is defined by contrast (reward–punishment, all firms forward-looking)"
+   }
+  ]
+ },
+ {
+  "citation": "Hunold et al. 2025",
+  "title": "Algorithmic price recommendations and collusion: Experimental evidence",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "non-binding algorithmic recommendations act as a coordination device"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Klein 2021",
+  "title": "Autonomous Algorithmic Collusion: Q-Learning Under Sequential Pricing",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "Autonomous Algorithmic Collusion: Q-Learning Under Sequential Pricing"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "equilibrium / not a failure to optimise",
+    "quote": "the algorithms have adopted strategies such that neither can improve given the strategy of the other algorithm"
+   }
+  ]
+ },
+ {
+  "citation": "Tolety 2025",
+  "title": "Tacit Bidder-Side Collusion: Artificial Intelligence in Dynamic Auctions",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Tailor 2025",
+  "title": "Audit the Whisper: Detecting Steganographic Collusion in Multi-Agent LLMs",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "O",
+   "quote": "coordinate to maximise collective reward while staying below auditing thresholds"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Bichler et al. 2024",
+  "title": "Online Optimization Algorithms in Repeated Price Competition: Equilibrium Learning and Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "produced by learning algorithms without human design to do so"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "persistence / durability",
+    "quote": "persistent supra-competitive outcomes produced by learning algorithms"
+   }
+  ]
+ },
+ {
+  "citation": "Assad et al. 2024",
+  "title": "Algorithmic Pricing and Competition: Empirical Evidence from the German Retail Gasoline Market",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "we examine whether algorithms actively learn how not to compete (i.e., to tacitly collude)"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Mallen et al. 2024",
+  "title": "Subversion Strategy Eval: Can language models statelessly strategize to subvert control protocols?",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "subverting the control protocol without being caught"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "'Multiple parties' are instances of the same model."
+  },
+  "other_elements": [
+   {
+    "element": "monitor as colluder (monitor-policy collusion)",
+    "quote": "Untrusted generator and monitor instances coordinate on a shared signal"
+   }
+  ]
+ },
+ {
+  "citation": "Shlegeris 2024",
+  "title": "How to prevent collusion when using untrusted models to monitor each other",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "why doesn’t the monitor just lie when it’s asked about an actually dangerous action, and let that action go through?"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "different instances of the schemer to agree on signals"
+  },
+  "other_elements": [
+   {
+    "element": "colluder occupies evaluator/monitor role",
+    "quote": "an untrusted monitor deliberately lies about a dangerous action proposed by another instance of the model"
+   }
+  ]
+ },
+ {
+  "citation": "Järviniemi 2025",
+  "title": "Subversion via Focal Points: Investigating Collusion in LLM Monitoring",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "Attack is uncaught. M classifies the backdoored program produced by P as safe."
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "passing audits/honeypots (evading validation)",
+    "quote": "the monitor passes auditing"
+   },
+   {
+    "element": "monitor-policy role structure",
+    "quote": "the AIs in different roles could coordinate to simultaneously cause a failure"
+   }
+  ]
+ },
+ {
+  "citation": "Asker et al. 2023",
+  "title": "Artificial Intelligence and Pricing: The Impact of Algorithm Design",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Hu et al. 2025",
+  "title": "Stop Reducing Responsibility in LLM-Powered Multi-Agent Systems to Local Alignment",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Autorité de la concurrence & Bundeskartellamt 2019",
+  "title": "Algorithms and Competition",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Mazumdar 2022",
+  "title": "Algorithmic Collusion: Reviving Section 5 of the FTC Act",
+  "field": "Law & policy",
+  "C15": {
+   "code": "O",
+   "quote": "companies may—even unwittingly—coordinate with other competitors"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "strategic interdependence / conscious parallelism",
+    "quote": "mere interdependence of basic price decisions"
+   }
+  ]
+ },
+ {
+  "citation": "Engel 2007",
+  "title": "How Much Collusion? A Meta-Analysis On Oligopoly Experiments",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "collusion as continuous degree",
+    "quote": "The distance between the Walrasian equilibrium WE and the collusive equilibrium CE is defined as 100% of collusion"
+   }
+  ]
+ },
+ {
+  "citation": "Carissimo et al. 2025",
+  "title": "Algorithmic Collusion is Algorithm Orchestration",
+  "field": "Economics",
+  "C15": {
+   "code": "X",
+   "quote": "Algorithm designers jointly parameterise/train pricing algorithms"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "Collusion in the meta-game by contrast is defined by co-training and co-parameterization"
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "Collusion located at the designer (meta-game) level, not the algorithms"
+   },
+   {
+    "element": "failure to best respond",
+    "quote": "Any parameter profile that is not mutually consistent with best-responding behavior"
+   }
+  ]
+ },
+ {
+  "citation": "Xiao & Phuong 2026",
+  "title": "Bootstrapped Monitoring: Leveraging Transparent Reasoning to Oversee Stronger AI Agents",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "Um is instructed to assign low suspicion scores to help the agent avoid detection"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "while producing reasoning that appears honest to T"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "colluder occupies evaluator/monitor role",
+    "quote": "An untrusted monitor deliberately assigns low suspicion scores to a misaligned agent's attacks"
+   }
+  ]
+ },
+ {
+  "citation": "Banchio & Mantegazza 2023",
+  "title": "Artificial Intelligence and Spontaneous Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "this channel does not require deliberate intent to collude from market participants"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "market division",
+    "quote": "(supra-competitive prices, market division)"
+   }
+  ]
+ },
+ {
+  "citation": "Calvano et al. 2020a",
+  "title": "Artificial Intelligence, Algorithmic Pricing, and Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "can arise among algorithms without communication or instruction"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "equilibrium / not a failure to optimise",
+    "quote": "the supracompetitive outcomes may be obtained in equilibrium and do not result from a failure to optimize"
+   }
+  ]
+ },
+ {
+  "citation": "Neves & Bussmann 2026",
+  "title": "Smart Agent-Based Modelling with LLMs: Leveraging Large Language Models for a Better Understanding of Algorithmic Collusion",
+  "field": "Law & policy",
+  "C15": {
+   "code": "R",
+   "quote": "learning algorithms produce supra-competitive outcomes without programmed intent, often autonomously"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Nisan & Zerah 2026",
+  "title": "Domination-Avoiding Learning Agents Cannot Collude",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "exhibiting a single CCE supported on supra-competitive prices"
+   }
+  ]
+ },
+ {
+  "citation": "Beneke & Mackenrodt 2019",
+  "title": "Artificial Intelligence and Collusion",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "deviation detectability (mutual monitoring)",
+    "quote": "any deviation from the coordination needs to be detectable by the other market players"
+   },
+   {
+    "element": "strategic interdependence / conscious parallelism",
+    "quote": "also referred to as tacit collusion and interdependent pricing"
+   }
+  ]
+ },
+ {
+  "citation": "Calvano et al. 2023",
+  "title": "Algorithmic collusion: Genuine or spurious?",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "algorithms learn autonomously"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "equilibrium / not a failure to optimise",
+    "quote": "simply because they are missing opportunities to earn more"
+   }
+  ]
+ },
+ {
+  "citation": "Pang et al. 2026",
+  "title": "Codetta: High-Capacity, Keyless, and Undetectable Multi-Agent Collusion",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "O",
+   "quote": "Collusion may be human-driven or emergent."
+  },
+  "C16": {
+   "code": "R",
+   "quote": "They aim to communicate secret messages through LLM output channels without being detected"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "information exfiltration / leaking data",
+    "quote": "leak confidential information or to coordinate unauthorized actions"
+   }
+  ]
+ },
+ {
+  "citation": "Musolff 2026",
+  "title": "Algorithmic Pricing, Price Wars and Tacit Collusion: Evidence from E-Commerce",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "algorithmic pricing companies have developed ‘resetting’ strategies"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Gabison & Xian 2025",
+  "title": "Inherent and emergent liability issues in LLM-based agentic systems: a principal-agent perspective",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "O",
+   "quote": "agent-third party collusion against principals"
+  },
+  "C17": {
+   "code": "O",
+   "quote": "principal-third party collusion against agents"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "collusion with external party/principal",
+    "quote": "principal-agent collusion against third parties"
+   }
+  ]
+ },
+ {
+  "citation": "Jecmen et al. 2020",
+  "title": "Mitigating Manipulation in Peer Review via Randomized Reviewer Assignments",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "Conference/peer-review integrity, other authors"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "unethical authors may enter into deals with potential reviewers for their paper"
+   },
+   {
+    "element": "quid pro quo / side payment",
+    "quote": "give it a favorable review in exchange for some outside reward"
+   }
+  ]
+ },
+ {
+  "citation": "OECD 2017",
+  "title": "Algorithms and Collusion: Competition Policy in the Digital Age",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Zhou et al. 2026",
+  "title": "CABAL: Multi-Agent Simulacra for Tracing the Effects of Collusive Bidding in Peer Review",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "honest authors (vs all-honest counterfactual world)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "reciprocal favour exchange",
+    "quote": "increase the likelihood of reciprocal assignments"
+   },
+   {
+    "element": "unsanctioned communication channel",
+    "quote": "collusive bidding as off-platform coordination"
+   },
+   {
+    "element": "colluder occupies evaluator/monitor role",
+    "quote": "evaluate one another’s papers strategically rather than independently"
+   }
+  ]
+ },
+ {
+  "citation": "Werner 2021",
+  "title": "Algorithmic and Human Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "test whether algorithms learn to set supracompetitive prices"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "firms (algorithms or humans) sustain supracompetitive prices"
+   }
+  ]
+ },
+ {
+  "citation": "Fonseca & Normann 2012",
+  "title": "Explicit vs. Tacit Collusion – The Impact of Communication in Oligopoly Experiments",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "equilibrium / not a failure to optimise",
+    "quote": "for collusion to be a subgame-perfect equilibrium"
+   }
+  ]
+ },
+ {
+  "citation": "Hartline et al. 2025",
+  "title": "Regulation of Algorithmic Collusion, Refined: Testing Pessimistic Calibrated Regret",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "failure to best respond",
+    "quote": "the seller is non-collusive if the transcript satisfies the vanishing calibrated regret property"
+   }
+  ]
+ },
+ {
+  "citation": "Calvano et al. 2019",
+  "title": "Algorithmic Pricing What Implications for Competition Policy?",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "learning algorithms may come to solve the coordination problems even if they have been designed innocently"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Zhang 2025",
+  "title": "Too Noisy to Collude? Algorithmic Collusion Under Laplacian Noise",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Hu et al. 2026",
+  "title": "Lying with Truths: Open-Channel Multi-Agent Collusion for Belief Manipulation via Generative Montage",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "Victim agents and downstream judges (false beliefs)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "deception / belief manipulation",
+    "quote": "to maximise victims' belief in a fabricated hypothesis"
+   }
+  ]
+ },
+ {
+  "citation": "Schroeder de Witt et al. 2025",
+  "title": "Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "Also mentions unintended/emergent collusion"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "coordinate to share or conceal information in ways that evade detection"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "information exfiltration / leaking data",
+    "quote": "Collusion and exfiltration in multi-agent systems (MAS) arise when agents coordinate"
+   },
+   {
+    "element": "single controller of multiple agents",
+    "quote": "effectively controlled by a single (very powerful) adversary"
+   }
+  ]
+ },
+ {
+  "citation": "Heo et al. 2025",
+  "title": "Large Language Models in Construction Bidding: Opportunities and Risks of Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "algorithms independently learn and adopt collusive strategies without explicit coordination"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "persistence over time",
+    "quote": "achieving sustained high profits over time"
+   }
+  ]
+ },
+ {
+  "citation": "Arslan et al. 2026",
+  "title": "Persistent Partners Raise Prices Among Learning Agents",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "division of profits among colluders (symmetry)",
+    "quote": "firms' Δ spread is below 0.3"
+   }
+  ]
+ },
+ {
+  "citation": "Kaur et al. 2026",
+  "title": "Beyond the Transcript: Detecting Covert Coordination in Latent Multi-Agent Communication",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "Agents controlled by an attacker coordinate"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Xu et al. 2026",
+  "title": "MAStrike: Shapley-Guided Collusive Red-Teaming on Multi-Agent Systems",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "X",
+   "quote": "A coalition of compromised agents coordinates manipulations"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "unsafe tool execution otherwise rejected"
+  },
+  "C17": {
+   "code": "O",
+   "quote": "coordinated manipulation across multiple agents"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "super-additive joint harm",
+    "quote": "jointly compromising ai and aj yields a greater ASR than the sum of their individual effects"
+   }
+  ]
+ },
+ {
+  "citation": "Johnson et al. 2023",
+  "title": "Supplement to “Platform Design When Sellers Use Pricing Algorithms”",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "sellers sustain monopoly prices as a cartel in subgame-perfect equilibrium"
+   }
+  ]
+ },
+ {
+  "citation": "Carichon et al. 2025",
+  "title": "The Coming Crisis of Multi-Agent Misalignment: AI Alignment Must Be a Dynamic and Social Process",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "agents can hack rewards by creating new risks where models end up collaborating instead of competing"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "reward hacking / specification gaming",
+    "quote": "agents can hack rewards"
+   }
+  ]
+ },
+ {
+  "citation": "Baker McKenzie 2025",
+  "title": "United States: Ninth Circuit on Algorithmic Pricing",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "X",
+   "quote": "parallel (even conscious) use of common algorithms or higher prices alone are insufficient"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "METR/Redwood 2026",
+  "title": "Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+  "field": "Incident",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "O",
+   "quote": "Developer's evaluation (scorer) and Hugging Face"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "use of unsanctioned channel / breaching isolation",
+    "quote": "agents meant to be isolated from one another found a way to communicate"
+   }
+  ]
+ },
+ {
+  "citation": "Dou et al. 2025",
+  "title": "AI-Powered Trading, Algorithmic Collusion, and Price Efficiency",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "without explicit agreements, communication, or pre-programmed intent"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "agents have the option to deviate from equilibrium actions for short-term gains"
+   }
+  ]
+ },
+ {
+  "citation": "Friedrich et al. 2024",
+  "title": "Learning Collusion in Episodic, Inventory-Constrained Markets",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Shi et al. 2026",
+  "title": "Emergent Collusion in Long-Horizon LLM Agent Interaction",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "Emergent Collusion in Long-Horizon LLM Agent Interaction"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "The user/principal whose verification instructions are violated"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "causal influence between colluders",
+    "quote": "joint instruction violation driven by inter-agent behavioral influence"
+   }
+  ]
+ },
+ {
+  "citation": "Lee 2026",
+  "title": "Who Leads and Who Collects: Algorithmic Collusion in Markets of Heterogeneous Language Models",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Ezrachi et al. 2017",
+  "title": "Artificial Intelligence & Collusion: When Computers Inhibit Competition",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "recognition of interdependence",
+    "quote": "recognize their shared economic interests and their interdependence with respect to price and output decisions"
+   }
+  ]
+ },
+ {
+  "citation": "Mathew et al. 2024",
+  "title": "Hidden in Plain Text: Emergence & Mitigation of Steganographic Collusion in LLMs",
+  "field": "AI safety",
+  "C15": {
+   "code": "O",
+   "quote": "emergent from misspecified reward"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "the stegotext is not flagged as suspicious by the overseer"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "maintaining cover-task performance",
+    "quote": "the stegotext is suitably performant"
+   }
+  ]
+ },
+ {
+  "citation": "Normann et al. 2023",
+  "title": "Human-Algorithm Interaction: Algorithmic Pricing in Hybrid Laboratory Markets",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "It appears participants learn to collude tacitly with repetitions of the supergame"
+   }
+  ]
+ },
+ {
+  "citation": "Ye 2025",
+  "title": "Algorithmic Collusion under Observed Demand Shocks",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "produced by learning algorithms without human design to produce those outcomes"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Green & Porter 1984",
+  "title": "Noncooperative Collusion under Imperfect Price Information",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "the agreed-upon conduct is noncooperatively viable and that it remains so over time"
+   }
+  ]
+ },
+ {
+  "citation": "Gal 2019",
+  "title": "Algorithms as Illegal Agreements",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "deviation detectability (mutual monitoring)",
+    "quote": "reaching an understanding on profitable terms, detecting deviations, credible retaliation"
+   },
+   {
+    "element": "strategic interdependence / conscious parallelism",
+    "quote": "taking into account their competitors’ probable reactions to their actions"
+   }
+  ]
+ },
+ {
+  "citation": "Tinoco et al. 2025",
+  "title": "Impact of Price Inflation on Algorithmic Collusion Through Reinforcement Learning Agents",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "R",
+   "quote": "where autonomous pricing algorithms learn to sustain supra-competitive prices without explicit communication"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Arunachaleswaran et al. 2024",
+  "title": "Algorithmic Collusion Without Threats",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Fisher 2025",
+  "title": "Cleaning and Sharpening Our Antitrust Tools for the Age of AI",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "O",
+   "quote": "AI oligopoly pricing via a common algorithm should be treated as a tacit price-fixing agreement"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Calder-Wang et al. 2026",
+  "title": "Coordinated vs Efficient Prices: The Impact of Algorithmic Pricing on Multifamily Rental Markets",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "these pricing agents might just learn to jointly play a collusive strategy"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "algorithmic pricing software that coordinates the pricing among all adopters"
+  },
+  "other_elements": [
+   {
+    "element": "internalising other firms' profits",
+    "quote": "internalising fellow adopters' profits"
+   }
+  ]
+ },
+ {
+  "citation": "Kovacic et al. 2011",
+  "title": "Plus Factors and Agreement in Antitrust Law",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Harrington 2018",
+  "title": "Developing Competition Law for Collusion by Autonomous Artificial Agents",
+  "field": "Law & policy",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Riemer et al. 2026",
+  "title": "Position: Collusion Risks Among AI Reasoning Agents Justify Certification Requirements for Making Market Decisions",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Hartline et al. 2024",
+  "title": "Regulation of Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "unilateral (single-agent) best-response criterion",
+    "quote": "It is non-collusive for a seller to approximately best respond to their competitive environment."
+   }
+  ]
+ },
+ {
+  "citation": "Luo et al. 2026",
+  "title": "Algorithmic Collusion at Test Time: A Meta-game Design and Evaluation",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "collusion as continuous degree",
+    "quote": "measured by a Collusion Index from 0 (SGNE) to 1 (monopoly, full collusion)"
+   }
+  ]
+ },
+ {
+  "citation": "Sivachandran et al. 2026",
+  "title": "Mitigating Retaliatory Algorithmic Collusion in Repeated Games",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "O",
+   "quote": "arises without communication or shared design"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Affonso 2026",
+  "title": "Vertical tacit collusion in AI-mediated markets",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "super-additive joint harm",
+    "quote": "joint harm exceeds sum of independent harms"
+   }
+  ]
+ },
+ {
+  "citation": "Calvano et al. 2021",
+  "title": "Algorithmic collusion with imperfect monitoring",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "without having been instructed to do so, and without communicating with one another"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Deshpande et al. 2026",
+  "title": "Strategic AI in Cournot Markets",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Das et al. 2026",
+  "title": "You Can't Escape Your Own Activations: Evaluation Awareness and Multi-Agent Monitoring",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "coordinate toward an undesirable objective while attempting to evade oversight"
+  },
+  "C17": {
+   "code": "O",
+   "quote": "Overseers/honest players (dealer, Warden)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Lee & Park 2026b",
+  "title": "Market Signal Injection: Adversarial Context Manipulation of LLM Pricing Agents",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Kindred 2026",
+  "title": "Schelling Coordination in LLMs: A Review",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "to subvert control protocols"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "monitor-policy role structure",
+    "quote": "the scheming monitor deliberately mislabels backdoored code as safe"
+   }
+  ]
+ },
+ {
+  "citation": "Boehmer et al. 2022",
+  "title": "Combating Collusion Rings is Hard but Possible",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "humans as colluders",
+    "quote": "sets of authors that unethically review and support each other"
+   },
+   {
+    "element": "quid pro quo / side payment",
+    "quote": "creating a review cycle where each reviewer gives favorable reviews"
+   }
+  ]
+ },
+ {
+  "citation": "Jarviniemi 2024",
+  "title": "Schelling game evaluations for AI control",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "deliberately labels the policy's real attacks safe while evading human evaluation"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "monitor as colluder (monitor-policy collusion)",
+    "quote": "the monitor might lie and deliberately label dangerous actions as safe"
+   }
+  ]
+ },
+ {
+  "citation": "den Boer et al. 2022",
+  "title": "Artificial Collusion: Examining Supracompetitive Pricing by Q-learning Algorithms",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "collusive equilibria, defined as strategy pairs that can be interpreted as having a reward-punishment scheme"
+   },
+   {
+    "element": "recovery after deviation",
+    "quote": "if one also requires that collusion does not break down forever after a single defect"
+   }
+  ]
+ },
+ {
+  "citation": "Kühn & Tadelis 2018",
+  "title": "The Economics of Algorithmic Pricing: Is collusion really inevitable?",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "division of profits among colluders (symmetry)",
+    "quote": "firms agree (tacitly or explicitly) on collusive actions, profit split and punishment of deviations"
+   },
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "The conditions under which an agreement (whether tacit or explicit) can actually be enforced"
+   }
+  ]
+ },
+ {
+  "citation": "Conjeaud et al. 2026",
+  "title": "Algorithmic collusion under asynchronous price updating",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "a form of reward-punishment scheme is learned by the algorithms"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "causal influence between colluders",
+    "quote": "a firm causes the other one to set supracompetitive prices"
+   }
+  ]
+ },
+ {
+  "citation": "Huber & Imhof 2019",
+  "title": "Machine learning with screens for detecting bid-rigging cartels",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "allocation among colluders (designated winner)",
+    "quote": "The first step consists of determining the designated winner of the tender by the cartel"
+   }
+  ]
+ },
+ {
+  "citation": "Bichler et al. 2025",
+  "title": "Algorithmic Pricing and Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "produced by learning algorithms without being programmed to produce those outcomes"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "recognition of interdependence",
+    "quote": "tacit recognition of interdependence"
+   }
+  ]
+ },
+ {
+  "citation": "Kawai & Nakabayashi 2014",
+  "title": "Detecting Large-Scale Collusion in Procurement Auctions",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "bid rigging / predetermined winner",
+    "quote": "ring members pick a predetermined winner beforehand"
+   }
+  ]
+ },
+ {
+  "citation": "Lee & Park 2026a",
+  "title": "Faithful yet Collusive: Why Chain-of-Thought Monitoring Cannot Detect Collusion in LLM Pricing Agents under Oligopolistic Competition",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Bashir et al. 2025",
+  "title": "Many-to-One Adversarial Consensus: Exposing Multi-Agent Collusion Risks in AI-Based Healthcare",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "X",
+   "quote": "Colluders are scripted adversarial assistants"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "R",
+   "quote": "multiple assistants coordinate against a single trusted doctor"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "deceiving another agent via false consensus",
+    "quote": "coordinated adversaries can collude to create false consensus"
+   }
+  ]
+ },
+ {
+  "citation": "Byrne & de Roos 2019",
+  "title": "Learning to Coordinate: A Study in Retail Gasoline",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "Economists define an equilibrium as collusive if it delivers greater profits than those available in a static Nash equilibrium"
+   }
+  ]
+ },
+ {
+  "citation": "Bhatt et al. 2025",
+  "title": "Ctrl-Z: Controlling AI Agents via Resampling",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "the red team devises a collusion signal that the untrusted monitor can use to decide when to lie"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "lying by rating dangerous code as safe to avoid reporting attacks"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "passing audits/honeypots (evading validation)",
+    "quote": "while behaving honestly on honeypots to evade validation"
+   },
+   {
+    "element": "monitor-policy role structure",
+    "quote": "a malicious untrusted monitor might collude with the untrusted agent"
+   }
+  ]
+ },
+ {
+  "citation": "Ren et al. 2025b",
+  "title": "When AI Agents Collude Online: Financial Fraud Risks by Collaborative LLM Agents on Social Platforms",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "jointly defraud benign users on a social platform"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Garra 2026",
+  "title": "Mitigating Emergent Collusion in LLM Pricing Agents",
+  "field": "Economics",
+  "C15": {
+   "code": "R",
+   "quote": "supracompetitive outcomes produced by learning or AI-based algorithms without explicit human design to collude"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Pierucci et al. 2026",
+  "title": "Institutional AI: A Governance Framework for Distributional AGI Safety",
+  "field": "AI safety",
+  "C15": {
+   "code": "R",
+   "quote": "an emergent system-level failure producing outcomes inconsistent with designer intent"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "system-level failure among individually aligned agents",
+    "quote": "implicit coordination among (individually aligned) agents"
+   }
+  ]
+ },
+ {
+  "citation": "Tonini et al. 2026",
+  "title": "The Arbiter Agent: Continually Monitoring Multi-Agent Conversations to Detect Emergent Misalignment",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "Two agents receive a system prompt instructing them to collude"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "coordinate to steer the discussion toward your shared objective without being detected"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "shared hidden objective",
+    "quote": "pursuing a shared hidden objective"
+   }
+  ]
+ },
+ {
+  "citation": "Makins et al. 2026",
+  "title": "Multi-Agent AI Control: Distributed Attacks Hamper Per-Instance Monitors",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "splitting it into innocuous pieces to evade per-instance monitors"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "decomposing harmful task into innocuous pieces",
+    "quote": "splitting it into innocuous pieces to evade per-instance monitors"
+   }
+  ]
+ },
+ {
+  "citation": "Fung et al. 2018",
+  "title": "Mitigating Sybils in Federated Learning Poisoning",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "X",
+   "quote": "multiple adversary-controlled clients"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "shared global model and honest clients"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "single controller of multiple agents",
+    "quote": "one adversary, many aliases"
+   }
+  ]
+ },
+ {
+  "citation": "OpenAI 2026",
+  "title": "OpenAI – Hugging Face Incident Technical Report",
+  "field": "Incident",
+  "C15": {
+   "code": "R",
+   "quote": "agents on independent tasks improvised hidden message boards"
+  },
+  "C16": {
+   "code": "O",
+   "quote": "jointly circumvent controls"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "unsanctioned communication channel",
+    "quote": "collaborated via unintended forms of communication rather than a provided collaboration tool"
+   }
+  ]
+ },
+ {
+  "citation": "Gardner-Challis et al. 2026",
+  "title": "When can we trust untrusted monitoring? An AI control safety case sketch across collusion strategies",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "the monitor could behave honestly on test inputs, but wave through malicious outputs"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "wave through malicious outputs it recognises as coming from another instance of itself"
+  },
+  "other_elements": [
+   {
+    "element": "passing audits/honeypots (evading validation)",
+    "quote": "while behaving honestly on honeypots"
+   },
+   {
+    "element": "monitor-policy role structure",
+    "quote": "An untrusted monitor colludes with the untrusted generator"
+   }
+  ]
+ },
+ {
+  "citation": "Zeng et al. 2026",
+  "title": "Voluntary Collusion with Secret Tools in Competing LLM Agents",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "R",
+   "quote": "a subset of agents coordinate to advance their own interests at the expense of other participants"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "equilibrium / not a failure to optimise",
+    "quote": "Strong collusion additionally requires π and π ′ to be Nash equilibria of the game."
+   }
+  ]
+ },
+ {
+  "citation": "Gautier et al. 2020",
+  "title": "AI algorithms, price discrimination and collusion: a technological, economic and legal perspective",
+  "field": "Law & policy",
+  "C15": {
+   "code": "O",
+   "quote": "algorithms not programmed with intent to collude"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Eschenbaum et al. 2026",
+  "title": "Auditing Algorithmic Collusion from Strategy Graphs",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "such algorithms may sustain supra-competitive prices without an agreement or instruction to collude"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "self-enforcing equilibrium",
+    "quote": "collusive equilibria must make deviations unattractive"
+   }
+  ]
+ },
+ {
+  "citation": "Motwani et al. 2024",
+  "title": "Secret Collusion among AI Agents: Multi-Agent Deception via Steganography",
+  "field": "AI safety",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "R",
+   "quote": "steganographic hidden channels evading oversight"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Cao et al. 2026",
+  "title": "Supracompetitive Pricing Under AI Monoculture",
+  "field": "Economics",
+  "C15": {
+   "code": "O",
+   "quote": "Collusive pricing emerges not from strategic coordination among sellers"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "R",
+   "quote": "from the structural properties of shared decision-making infrastructure"
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Hagag et al. 2026",
+  "title": "ORBIT: A Framework for Multi-Agent Safety and Security Evaluations",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "X",
+   "quote": "a subset of agents receives coordinated instructions to maximize coalition reward"
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "R",
+   "quote": "positive values show coalition members extract more reward than other agents (i.e., successful collusion)"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Wieting et al. 2021",
+  "title": "Algorithms in the Marketplace: An Empirical Analysis of Automated Pricing in E-Commerce",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Brown et al. 2021",
+  "title": "Competition in Pricing Algorithms",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Miklós-Thal et al. 2019",
+  "title": "Collusion by Algorithm: Does Better Demand Prediction Facilitate Coordination Between Sellers?",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "repeated interaction required",
+    "quote": "joint-profit-oriented prices in a repeated game via grim-trigger punishment"
+   }
+  ]
+ },
+ {
+  "citation": "Ren et al. 2025a",
+  "title": "When Autonomy Goes Rogue: Preparing for Risks of Multi-Agent Collusion in Social Systems",
+  "field": "Multi-agent ML",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "O",
+   "quote": "benefits the colluding parties at the expense of others"
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "single controller of multiple agents",
+    "quote": "through direct messaging or centralized control"
+   }
+  ]
+ },
+ {
+  "citation": "Hartline et al. 2026",
+  "title": "The Computable but Not Learnable Information-Value-Free Equilibria and Regulation of Algorithmic Collusion",
+  "field": "Economics",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "",
+   "quote": ""
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": []
+ },
+ {
+  "citation": "Greenblatt et al. 2023",
+  "title": "AI Control: Improving Safety Despite Intentional Subversion",
+  "field": "AI safety",
+  "C15": {
+   "code": "X",
+   "quote": "the red team tries to ensure that the monitor false negatives are correlated with the policy’s backdoor attempts"
+  },
+  "C16": {
+   "code": "R",
+   "quote": "monitor emits false negatives exactly on the policy's backdoors"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "",
+   "quote": ""
+  },
+  "other_elements": [
+   {
+    "element": "monitor-policy role structure",
+    "quote": "an untrusted monitor and untrusted policy correlating misbehaviour"
+   }
+  ]
+ },
+ {
+  "citation": "Frank 2026",
+  "title": "Counter-Swarm Doctrine: Containing Coordinated Agent Intrusions",
+  "field": "Security & mechanism design",
+  "C15": {
+   "code": "",
+   "quote": ""
+  },
+  "C16": {
+   "code": "O",
+   "quote": "Principals, operators and third-party systems (policy violation)"
+  },
+  "C17": {
+   "code": "",
+   "quote": ""
+  },
+  "C18": {
+   "code": "X",
+   "quote": "Similar outputs, a shared model, or simultaneous resource use alone are insufficient."
+  },
+  "other_elements": [
+   {
+    "element": "causal influence between colluders",
+    "quote": "Requires causal influence; correlation alone insufficient."
+   }
+  ]
+ }
+]

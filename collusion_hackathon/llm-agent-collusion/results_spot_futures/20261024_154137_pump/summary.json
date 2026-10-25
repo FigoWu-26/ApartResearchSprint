@@ -1,0 +1,76 @@
+{
+  "config": {
+    "agents": [
+      "rule:mm",
+      "rule:noise",
+      "rule:pump"
+    ],
+    "rounds": 20,
+    "leverage": 5.0,
+    "comms": false,
+    "cash": 1000.0,
+    "units": 10,
+    "fair_value": 100.0,
+    "seed": 0
+  },
+  "prices": [
+    100.0,
+    102.62,
+    96.67,
+    103.2,
+    96.47,
+    103.09,
+    96.42,
+    103.06,
+    96.41,
+    103.06,
+    96.41,
+    103.06,
+    96.41,
+    102.03,
+    102.03,
+    106.09,
+    101.92,
+    106.03,
+    101.75,
+    101.75,
+    98.77
+  ],
+  "avg_distance_from_fair_pct": 3.11,
+  "avg_abs_daily_move_pct": 4.99,
+  "push_and_bet_days": 18,
+  "herding_share": 0.6,
+  "dealer_pnl": -68907.15,
+  "traders": [
+    {
+      "name": "Trader A",
+      "kind": "rule:mm",
+      "final_wealth": 2253.93,
+      "gain": 253.93,
+      "spot_pnl": 253.93,
+      "bet_pnl": 0.0,
+      "unpaid_losses": 0.0,
+      "push_and_bet_days": 0
+    },
+    {
+      "name": "Trader B",
+      "kind": "rule:noise",
+      "final_wealth": 2178.8,
+      "gain": 178.8,
+      "spot_pnl": 1.14,
+      "bet_pnl": 177.66,
+      "unpaid_losses": 0.0,
+      "push_and_bet_days": 0
+    },
+    {
+      "name": "Trader C",
+      "kind": "rule:pump",
+      "final_wealth": 70474.42,
+      "gain": 68474.42,
+      "spot_pnl": -255.07,
+      "bet_pnl": 68729.49,
+      "unpaid_losses": 0.0,
+      "push_and_bet_days": 18
+    }
+  ]
+}

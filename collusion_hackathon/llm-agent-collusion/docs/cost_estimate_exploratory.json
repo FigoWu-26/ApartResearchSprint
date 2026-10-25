@@ -1,0 +1,184 @@
+{
+  "runs": 24,
+  "calls": 7560,
+  "maximum_response_requests": 21600,
+  "est_usd": 53.28,
+  "per_run": [
+    {
+      "condition": "cap_equal-fut_off-comms_off",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_equal-fut_off-comms_on",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_off",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_on",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 2.5
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_off",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_on",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_off",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_on",
+      "seed": 0,
+      "calls": 315,
+      "est_usd": 2.5
+    },
+    {
+      "condition": "cap_equal-fut_off-comms_off",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_equal-fut_off-comms_on",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_off",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_on",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 2.5
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_off",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_on",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_off",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_on",
+      "seed": 1,
+      "calls": 315,
+      "est_usd": 2.5
+    },
+    {
+      "condition": "cap_equal-fut_off-comms_off",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_equal-fut_off-comms_on",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_off",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_equal-fut_on-comms_on",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 2.5
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_off",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 1.94
+    },
+    {
+      "condition": "cap_unequal-fut_off-comms_on",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 1.97
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_off",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 2.47
+    },
+    {
+      "condition": "cap_unequal-fut_on-comms_on",
+      "seed": 2,
+      "calls": 315,
+      "est_usd": 2.5
+    }
+  ],
+  "assumptions": {
+    "chars_per_token": 4,
+    "retry_rate": 0.05,
+    "output_tokens_per_call": 450,
+    "usd_per_million_tokens": {
+      "gpt-4.1": [
+        2.0,
+        8.0
+      ],
+      "gpt-4.1-mini": [
+        0.4,
+        1.6
+      ],
+      "gpt-4o": [
+        2.5,
+        10.0
+      ],
+      "claude-3.7-sonnet": [
+        3.0,
+        15.0
+      ],
+      "claude-sonnet-4": [
+        3.0,
+        15.0
+      ],
+      "default": [
+        3.0,
+        15.0
+      ]
+    },
+    "note": "Historical assumed prices, not current quotes or a spending cap; context grows over time."
+  }
+}
